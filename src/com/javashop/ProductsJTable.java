@@ -1,3 +1,5 @@
+package com.javashop;
+
 import data.Product;
 
 import javax.swing.*;
