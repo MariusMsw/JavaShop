@@ -1,1 +1,7 @@
 # JavaShop
+
+Tasks to do : 
+
+
+
+
