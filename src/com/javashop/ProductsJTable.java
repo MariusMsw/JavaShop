@@ -118,27 +118,6 @@ public class ProductsJTable {
         frame.add(loginButton,BorderLayout.SOUTH);
         frame.setVisible(true);
 
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int a = 0;
-                for(int i = 0; i < Integer.MAX_VALUE; i++){
-                    for(int j = 0; j < Integer.MAX_VALUE; j++){
-                        a++;
-                    }
-                }
-                /*
-                System.out.println("a=" + a);
-                try {
-                    Thread.sleep(10 * 1000);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
-                */
-            }
-        });
-
-
 
     }
 

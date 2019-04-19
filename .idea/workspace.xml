@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2cd14751-179e-49ed-9542-3d77c6bb9f9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaShop/com/javashop/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaShop/com/javashop/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaShop/com/javashop/ProductsJTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaShop/com/javashop/ProductsJTable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/javashop/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/javashop/ProductsJTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/ProductsJTable.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -34,12 +31,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/javashop/ProductsJTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="136" column="18" selection-start-line="136" selection-start-column="18" selection-end-line="136" selection-end-column="18" />
+            <state relative-caret-position="241">
+              <caret line="90" selection-start-line="90" selection-end-line="90" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#createDatabaseConnection#0;class#ProductsJTable#0" />
-                <element signature="method#getAllProducts#0;class#ProductsJTable#0" />
               </folding>
             </state>
           </provider>
@@ -48,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/javashop/data/Product.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="256">
+              <caret line="16" selection-start-line="15" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -67,10 +62,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="676" />
-    <option name="width" value="697" />
-    <option name="height" value="735" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="-7" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -87,6 +82,11 @@
             <path>
               <item name="JavaShop" type="b2602c69:ProjectViewProjectNode" />
               <item name="JavaShop" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaShop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaShop" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JavaShop" type="b2602c69:ProjectViewProjectNode" />
@@ -181,10 +181,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14925373" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.22100656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -194,7 +194,7 @@
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.312026" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924356" weight="0.31509846" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -229,19 +229,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/javashop/data/Product.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="256">
+          <caret line="16" selection-start-line="15" selection-end-line="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/javashop/ProductsJTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="136" column="18" selection-start-line="136" selection-start-column="18" selection-end-line="136" selection-end-column="18" />
+        <state relative-caret-position="241">
+          <caret line="90" selection-start-line="90" selection-end-line="90" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#createDatabaseConnection#0;class#ProductsJTable#0" />
-            <element signature="method#getAllProducts#0;class#ProductsJTable#0" />
           </folding>
         </state>
       </provider>
