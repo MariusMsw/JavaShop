@@ -4,13 +4,15 @@ import data.Product;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class ProductsJTable {
 
-    JFrame frame;
+    private JFrame frame;
 
-    JTable table;
+    private JTable table;
 
     Product[] products = null;
 
@@ -29,15 +31,6 @@ public class ProductsJTable {
                     username,
                     password);
 
-            /*
-            Statement statement = mConnection.createStatement();
-
-            ResultSet resultSet = statement.executeQuery("select * from products");
-
-            while (resultSet.next()){
-                System.out.println(resultSet.getString("price"));
-            }
-            */
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -92,19 +85,23 @@ public class ProductsJTable {
         frame = new JFrame("Shop");
         frame.setSize((int) screenSize.getWidth() / 2, (int) screenSize.getHeight() / 2);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        frame.setLayout(new BorderLayout());
 
         products = getAllProducts();
 
-        String[][] data = new String[products.length][3];
+        String[][] data = null;
+        if(products != null) {
+            data = new String[products.length][3];
+        }else {
+            data = new String[0][0];
+        }
 
         int index = 0;
         for (Product product : products) {
+
             data[index][0] = product.getName();
             data[index][1] = String.valueOf(product.getPrice());
             data[index][2] = String.valueOf(product.getQuantity());
-
-            //       System.out.println(data[index][0] + " " + data[index][1] + " " + data[index][2]);
 
             index++;
         }
@@ -115,9 +112,32 @@ public class ProductsJTable {
         table.setBounds(30, 40, 200, 300);
 
         JScrollPane scrollPane = new JScrollPane(table);
+        JButton loginButton = new JButton("LOGIN");
 
-        frame.add(scrollPane);
+        frame.add(scrollPane,BorderLayout.CENTER);
+        frame.add(loginButton,BorderLayout.SOUTH);
         frame.setVisible(true);
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int a = 0;
+                for(int i = 0; i < Integer.MAX_VALUE; i++){
+                    for(int j = 0; j < Integer.MAX_VALUE; j++){
+                        a++;
+                    }
+                }
+                /*
+                System.out.println("a=" + a);
+                try {
+                    Thread.sleep(10 * 1000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+                */
+            }
+        });
+
 
 
     }
