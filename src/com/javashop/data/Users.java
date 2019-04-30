@@ -1,5 +1,6 @@
 package com.javashop.data;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -10,11 +11,12 @@ public class Users {
 
     private static Users instance = null;
 
-    private Users(){}
+    private Users() {
+    }
 
-    public static Users getInstance(){
+    public static Users getInstance() {
 
-        if(instance == null){
+        if (instance == null) {
             instance = new Users();
             fetchUsersFromDB();
         }
@@ -22,7 +24,7 @@ public class Users {
         return instance;
     }
 
-    private static void fetchUsersFromDB(){
+    private static void fetchUsersFromDB() {
 
         final String DATABASE_URL = "jdbc:mysql://db4free.net:3306/shopdb2019";
         final String username = "proiectjava2019";
@@ -38,36 +40,38 @@ public class Users {
             ResultSet resultSet = statement.executeQuery("select * from users");
 
             while (resultSet.next()) {
-
-
                 String userName = resultSet.getString("username");
                 String userPassword = resultSet.getString("password");
 
-                User newUser = new User(userName, userPassword);
-                users.add(newUser);
-
+                addUser(username, userPassword);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
 
-    public boolean findUser(String username, String password){
+    public boolean findUser(String username, String password) {
 
-        for(User user : users){
-            if(user.getUsername().equals(username) &&
-                user.getPassword().equals(password)){
+        for (User user : users) {
+            if (user.getUsername().equals(username) &&
+                    user.getPassword().equals(password)) {
                 return true;
             }
         }
         return false;
     }
 
-    public void printAllUsers(){
-        for(User user : users){
+    public void printAllUsers() {
+        for (User user : users) {
             System.out.println(user);
         }
+    }
+
+    public static void addUser(String username, String password) {
+        User user = new User(username, password);
+        users.add(user);
     }
 
 }
