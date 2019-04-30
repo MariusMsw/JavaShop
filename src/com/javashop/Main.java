@@ -1,7 +1,11 @@
-import controller.ProductsController;
-import data.Product;
-import data.Products;
-import views.ProductsJTable;
+package com.javashop;
+
+import com.javashop.*;
+
+
+import com.javashop.controller.ProductsController;
+import com.javashop.data.Products;
+import com.javashop.views.ProductsJTable;
 
 import javax.swing.*;
 

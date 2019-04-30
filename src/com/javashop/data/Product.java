@@ -1,4 +1,4 @@
-package data;
+package com.javashop.data;
 
 public class Product {
 

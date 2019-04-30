@@ -1,4 +1,6 @@
-package data;
+package com.javashop.data;
+
+import com.javashop.data.Product;
 
 import java.sql.*;
 import java.util.ArrayList;

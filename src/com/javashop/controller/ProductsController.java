@@ -1,11 +1,12 @@
-package controller;
+package com.javashop.controller;
 
-import data.Products;
-import views.ProductsJTable;
+import com.javashop.data.*;
+import com.javashop.views.ProductsJTable;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ProductsController {
 
@@ -17,6 +18,36 @@ public class ProductsController {
         this.products = products;
 
         this.view.setLoginButtonActionListener(new LoginButtonActionListener());
+
+        this.view.setProductsForJTable(convertProductsToData());
+
+    }
+
+    private String[][] convertProductsToData(){
+
+        ArrayList<Product> theProducts = Products.getAllProducts();
+
+        String[][] data = null;
+        if(theProducts != null) {
+            data = new String[theProducts.size()][3];
+        }else {
+            data = new String[0][0];
+        }
+
+        int index = 0;
+        for (Product product : theProducts) {
+
+            data[index][0] = product.getName();
+            data[index][1] = String.valueOf(product.getPrice());
+            data[index][2] = String.valueOf(product.getQuantity());
+
+            index++;
+        }
+
+        System.out.println("in controller");
+
+        return data;
+
     }
 
     class LoginButtonActionListener implements ActionListener{
@@ -24,26 +55,31 @@ public class ProductsController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            JTextField firstName = new JTextField();
-            JTextField lastName = new JTextField();
+            Users users = Users.getInstance();
+
+            JTextField username = new JTextField();
             JPasswordField password = new JPasswordField();
             final JComponent[] inputs = new JComponent[] {
-                    new JLabel("First"),
-                    firstName,
-                    new JLabel("Last"),
-                    lastName,
+                    new JLabel("Username"),
+                    username,
                     new JLabel("Password"),
                     password
             };
             int result = JOptionPane.showConfirmDialog(view.getMainFrame(),
                                                         inputs,
-                                                    "My custom dialog",
+                                                    "Login",
                                                         JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
                 System.out.println("You entered " +
-                        firstName.getText() + ", " +
-                        lastName.getText() + ", " +
+                        username.getText() + ", " +
                         password.getText());
+
+                if(users.findUser(username.getText().trim(),password.getText().trim())){
+                    System.out.println("Exista!");
+                }else {
+                    System.out.println("Nu exista!");
+                }
+
             } else {
                 System.out.println("User canceled / closed the dialog, result = " + result);
             }
