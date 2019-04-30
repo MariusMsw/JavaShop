@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2cd14751-179e-49ed-9542-3d77c6bb9f9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/javashop/ProductsJTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/ProductsJTable.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,13 +16,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/javashop/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#210#211#0" expanded="true" />
-                <element signature="e#241#242#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="176">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -31,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/javashop/ProductsJTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="90" selection-start-line="90" selection-end-line="90" />
+            <state relative-caret-position="1167">
+              <caret line="84" column="35" lean-forward="true" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -62,7 +56,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-7" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -75,7 +69,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -110,7 +104,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -181,17 +175,17 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.22100656" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22068231" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="Learn" order="7" />
+      <window_info id="Learn" order="7" weight="0.32995737" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924356" weight="0.31509846" />
@@ -217,13 +211,8 @@
     <entry file="jar://C:/development/tools/jdks/jdk-11.0.2/lib/src.zip!/java.base/java/lang/Class.java" />
     <entry file="file://$PROJECT_DIR$/src/com/javashop/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#210#211#0" expanded="true" />
-            <element signature="e#241#242#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="176">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
@@ -236,8 +225,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/javashop/ProductsJTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
+        <state relative-caret-position="1167">
+          <caret line="84" column="35" lean-forward="true" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
