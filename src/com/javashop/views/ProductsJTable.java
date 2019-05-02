@@ -79,4 +79,10 @@ public class ProductsJTable {
         return mainFrame;
     }
 
+    public void setContent(JPanel panel){
+
+        mainFrame.getContentPane().remove(1);
+        mainFrame.repaint();
+        mainFrame.add(panel,BorderLayout.EAST);
+    }
 }

@@ -1,6 +1,7 @@
 package com.javashop.controller;
 
 import com.javashop.data.*;
+import com.javashop.views.AdminGUI;
 import com.javashop.views.ProductsJTable;
 
 import javax.swing.*;
@@ -78,6 +79,8 @@ public class ProductsController {
 
                 if (users.findUser(username.getText().trim(), password.getText().trim())) {
                     System.out.println("Exista!");
+                    view.setContent(new AdminGUI().getJPanel());
+
                 } else {
                     System.out.println("Nu exista!");
                 }
@@ -91,6 +94,10 @@ public class ProductsController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            //
+            // Create Dialog
+            //
             JTextField username = new JTextField();
             JPasswordField password = new JPasswordField();
 
@@ -106,10 +113,27 @@ public class ProductsController {
                     "REGISTER", JOptionPane.DEFAULT_OPTION
             );
 
-            if (users.findUser(username.getText().trim(), password.getText().trim())) {
-                System.out.println("Exista!");
-            } else {
-                Users.addUser(username.toString(), password.toString());
+
+            // If yes option was selected try to
+            // connect the user
+            //
+            if(result == JOptionPane.YES_OPTION) {
+
+                //
+                // If user exists in DB, then alert him/her
+                //
+                if (users.findUser(username.getText().trim(), password.getText().trim())) {
+                    System.out.println(" User exista! (register)");
+                } else {
+
+                    // If there is no user them add him/her
+                    //
+                    Users.addUser(username.getText().trim(), password.getText().trim());
+                }
+            }else {
+
+                // User canceled the dialog
+                System.out.println("User canceled the dialog");
             }
         }
     }

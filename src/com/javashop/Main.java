@@ -15,6 +15,8 @@ public class Main {
         ProductsJTable view = new ProductsJTable();
 
         ProductsController controller = new ProductsController(view,products);
+
+
     }
 
 }
