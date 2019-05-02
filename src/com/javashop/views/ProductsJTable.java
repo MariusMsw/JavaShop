@@ -4,6 +4,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class ProductsJTable {
 
@@ -12,10 +15,11 @@ public class ProductsJTable {
     private JButton loginButton;
     private JButton registerButton;
     private JSplitPane splitPane;
+    private Dimension screenSize;
 
     public ProductsJTable() {
 
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         splitPane = new JSplitPane();
         //
         // Creating the main frame which displays
@@ -31,7 +35,7 @@ public class ProductsJTable {
         mainFrame.getContentPane().add(splitPane);
 
         splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-        splitPane.setDividerLocation(200);
+        splitPane.setDividerLocation(((int) screenSize.getHeight() / 2) * 80 / 100);
 
         JPanel btnPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));//the buttons panel that will be divided in 2 sides (the 2 buttons)
 
@@ -41,6 +45,8 @@ public class ProductsJTable {
 
         table = new JTable();
         table.setBounds(30, 40, 200, 300);
+
+
         JScrollPane scrollPane = new JScrollPane(table);//the panel with the products
         mainFrame.add(scrollPane, 0);
         //
@@ -83,7 +89,16 @@ public class ProductsJTable {
     public void setContent(JPanel panel) {
 
         splitPane.setBottomComponent(panel);
-        splitPane.setDividerLocation(200);
+        splitPane.setDividerLocation(((int) screenSize.getHeight() / 2) * 80 / 100);
         mainFrame.repaint();
     }
+
+    public void setTableItemsListener(MouseAdapter adapter){
+        table.addMouseListener(adapter);
+    }
+
+    public JTable getTable(){
+        return table;
+    }
+
 }

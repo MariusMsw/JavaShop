@@ -80,4 +80,8 @@ public class Products {
         return products;
     }
 
+    public Product getProductAt(int index){
+        return products.get(index);
+    }
+
 }

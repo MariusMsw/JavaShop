@@ -2,17 +2,32 @@ package com.javashop.views;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class UserGUI {
+
     private JPanel userPanel;
+    private JButton addToShoppingCartButton = new JButton("Add to cart");
+    private JButton showShoppingCartButton = new JButton("Show cart");
+    private JButton checkoutButton = new JButton("Check-out");
+    private JButton logoutButton = new JButton("Logout");
 
     public UserGUI() {
         userPanel = new JPanel();
-        JTextField textField = new JTextField("asfasfrtgsdgsdgsdas");
-        userPanel.add(textField);
+        userPanel.setLayout(new GridLayout(1,4));
+
+        userPanel.add(addToShoppingCartButton);
+        userPanel.add(showShoppingCartButton);
+        userPanel.add(checkoutButton);
+        userPanel.add(logoutButton);
+
     }
 
     public JPanel getJPanel() {
         return userPanel;
+    }
+
+    public void setAddToShoppingCartButtonListener(ActionListener listener){
+        this.addToShoppingCartButton.addActionListener(listener);
     }
 }

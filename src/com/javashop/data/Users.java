@@ -73,6 +73,19 @@ public class Users {
         return false;
     }
 
+    public User getUser(String username, String password){
+
+        for (User user : users) {
+            if (user.getUsername().equals(username) &&
+                    user.getPassword().equals(password)) {
+
+                return user;
+            }
+        }
+
+        return null;
+    }
+
     public void printAllUsers() {
         for (User user : users) {
             System.out.println(user);
@@ -91,9 +104,16 @@ public class Users {
             statement.setString(2, password);
             statement.execute();
 
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void addProductToShoppingCart(Product product, User user){
+
+        user.addToShoppingCart(product);
+
     }
 
 }
