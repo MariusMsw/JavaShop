@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.concurrent.Flow;
 
 public class ProductsJTable {
 
@@ -18,17 +19,16 @@ public class ProductsJTable {
 
         //
         // Creating the main frame which displays
-        // products' table and login button
+        // products table, login and register buttons
         //
         mainFrame = new JFrame("Shop");
         mainFrame.setSize((int) screenSize.getWidth() / 2,
                 (int) screenSize.getHeight() / 2);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setResizable(false);
+        mainFrame.setResizable(true);
 
         mainFrame.setLayout(new FlowLayout(FlowLayout.CENTER));//divide the frame in 2 panels
 
-        JPanel mainPanel = new JPanel(new BorderLayout());//the main panel, with the products
         JPanel btnPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));//the buttons panel that will be divided in 2 sides (the 2 buttons)
 
         //
@@ -37,10 +37,8 @@ public class ProductsJTable {
 
         table = new JTable();
         table.setBounds(30, 40, 200, 300);
-        JScrollPane scrollPane = new JScrollPane(table);
-        mainFrame.add(scrollPane, BorderLayout.WEST);
-        mainPanel.add(btnPnl, BorderLayout.EAST);
-
+        JScrollPane scrollPane = new JScrollPane(table);//the panel with the products
+        mainFrame.add(scrollPane, 0);
         //
         // create the 2 buttons and add them to the buttons panel
         //
@@ -51,7 +49,7 @@ public class ProductsJTable {
         btnPnl.add(loginButton);
         btnPnl.add(registerButton);
 
-        mainFrame.add(mainPanel);
+        mainFrame.add(btnPnl, 1);//the panel with the buttons
         mainFrame.setVisible(true);
     }
 
@@ -76,7 +74,7 @@ public class ProductsJTable {
         return mainFrame;
     }
 
-    public void setContent(JPanel panel){
+    public void setContent(JPanel panel) {
 
         mainFrame.getContentPane().remove(1);
         mainFrame.repaint();

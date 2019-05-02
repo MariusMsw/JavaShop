@@ -3,6 +3,7 @@ package com.javashop.controller;
 import com.javashop.data.*;
 import com.javashop.views.AdminGUI;
 import com.javashop.views.ProductsJTable;
+import com.javashop.views.UserGUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -46,7 +47,7 @@ public class ProductsController {
             index++;
         }
 
-        System.out.println("in controller");
+        System.out.println("Program started!");
 
         return data;
 
@@ -76,9 +77,15 @@ public class ProductsController {
                         String.valueOf(password.getPassword()));
 
                 if (users.findUser(username.getText().trim(), String.valueOf(password.getPassword()).trim())) {
-                    JOptionPane.showMessageDialog(view.getMainFrame(), "Successful login!");
-                    view.setContent(new AdminGUI().getJPanel());
 
+                    JOptionPane.showMessageDialog(view.getMainFrame(), "Successful login!");
+                    /// if user successful logged in, check if he is admin or user logged
+                    if ((username.getText().trim().equals("marius") && String.valueOf(password.getPassword()).trim().equals("1234")) ||
+                            (username.getText().trim().equals("bogdan") && String.valueOf(password.getPassword()).trim().equals("1234"))) {
+                        view.setContent(new AdminGUI().getJPanel());
+                    } else {
+                        view.setContent(new UserGUI().getJPanel());
+                    }
                 } else {
                     JOptionPane.showMessageDialog(view.getMainFrame(), "Can't connect!\n" +
                             "Try again.");
