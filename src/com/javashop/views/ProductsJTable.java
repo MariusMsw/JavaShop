@@ -14,7 +14,7 @@ public class ProductsJTable {
     private JTable table;
     private JButton loginButton;
     private JButton registerButton;
-    private JSplitPane splitPane;
+    private static JSplitPane splitPane;
     private Dimension screenSize;
 
     public ProductsJTable() {
@@ -65,7 +65,7 @@ public class ProductsJTable {
         mainFrame.setVisible(true);
     }
 
-    public void setProductsForJTable(String[][] data) {
+    public static void setProductsForJTable(JTable table, String[][] data) {
 
         String[] columnNames = {"Name", "Price", "Stock"};
 
@@ -93,11 +93,15 @@ public class ProductsJTable {
         mainFrame.repaint();
     }
 
-    public void setTableItemsListener(MouseAdapter adapter){
+    public void setTableItemsListener(MouseAdapter adapter) {
         table.addMouseListener(adapter);
     }
 
-    public JTable getTable(){
+    public static JSplitPane getSplitPane() {
+        return splitPane;
+    }
+
+    public JTable getTable() {
         return table;
     }
 

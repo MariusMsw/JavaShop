@@ -30,14 +30,12 @@ public class ProductsController {
         this.view.setRegisterButtonActionListener(new RegisterButtonActionListener());
         this.view.setTableItemsListener(new TableItemMouseAdapter());
 
-        this.view.setProductsForJTable(convertProductsToData());
-        users = Users.getInstance();
+        this.view.setProductsForJTable(this.view.getTable(), convertProductsToData(Products.getAllProducts()));
+        this.users = Users.getInstance();
         this.products = products;
     }
 
-    private String[][] convertProductsToData() {
-
-        ArrayList<Product> theProducts = Products.getAllProducts();
+   public static String[][] convertProductsToData(ArrayList<Product> theProducts) {
 
         String[][] data;
         if (theProducts != null) {
@@ -98,7 +96,7 @@ public class ProductsController {
                     } else {
 
                         view.setContent(userGUI.getJPanel());
-                        Utils.loggedUser = users.getUser(username.getText().trim(),String.valueOf(password.getPassword()).trim());
+                        Utils.loggedUser = users.getUser(username.getText().trim(), String.valueOf(password.getPassword()).trim());
                     }
                 } else {
                     JOptionPane.showMessageDialog(view.getMainFrame(), "Can't connect!\n" +
@@ -148,7 +146,7 @@ public class ProductsController {
         }
     }
 
-    class TableItemMouseAdapter extends MouseAdapter{
+    class TableItemMouseAdapter extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
 
@@ -157,7 +155,7 @@ public class ProductsController {
         }
     }
 
-    public UserGUI getUserGUI(){
+    public UserGUI getUserGUI() {
         return userGUI;
     }
 

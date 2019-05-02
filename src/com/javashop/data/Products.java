@@ -14,11 +14,12 @@ public class Products {
     // setup for making the class singleton
     private static Products instance = null;
 
-    private Products(){ }
+    private Products() {
+    }
 
-    public static Products getInstance(){
+    public static Products getInstance() {
 
-        if(instance == null){
+        if (instance == null) {
 
             instance = new Products();
             fetchProductsFromDatabase();
@@ -29,17 +30,16 @@ public class Products {
     }
 
     // get data from database server
-    private static void fetchProductsFromDatabase(){
+    private static void fetchProductsFromDatabase() {
         final String DATABASE_URL = "jdbc:mysql://db4free.net:3306/shopdb2019";
         final String username = "proiectjava2019";
         final String password = "proiectjava2019";
 
 
-
         try {
             Connection connection = DriverManager.getConnection(DATABASE_URL,
-                                            username,
-                                        password);
+                    username,
+                    password);
 
             Statement statement = connection.createStatement();
             ResultSet resultSetSize = statement.executeQuery("select count(*) as size from products");
@@ -64,23 +64,21 @@ public class Products {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
 
     // Utilities methods for working with data
-    public void printAllProducts(){
-        for(Product product : products){
+    public void printAllProducts() {
+        for (Product product : products) {
             System.out.println(product);
         }
     }
 
-    public static ArrayList<Product> getAllProducts(){
+    public static ArrayList<Product> getAllProducts() {
         return products;
     }
 
-    public Product getProductAt(int index){
+    public Product getProductAt(int index) {
         return products.get(index);
     }
 

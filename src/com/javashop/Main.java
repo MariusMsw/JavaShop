@@ -25,7 +25,7 @@ public class Main {
                     @Override
                     public void run() {
                         // your code here
-                        UserController userController = new UserController(controller.getUserGUI(),users,products);
+                        UserController userController = new UserController(controller.getUserGUI(), users, products);
                     }
                 },
                 4000

@@ -14,7 +14,7 @@ public class UserGUI {
 
     public UserGUI() {
         userPanel = new JPanel();
-        userPanel.setLayout(new GridLayout(1,4));
+        userPanel.setLayout(new GridLayout(1, 4));
 
         userPanel.add(addToShoppingCartButton);
         userPanel.add(showShoppingCartButton);
@@ -27,7 +27,19 @@ public class UserGUI {
         return userPanel;
     }
 
-    public void setAddToShoppingCartButtonListener(ActionListener listener){
+    public void setAddToShoppingCartButtonListener(ActionListener listener) {
         this.addToShoppingCartButton.addActionListener(listener);
+    }
+
+    public void setShowShoppingCartButtonListener(ActionListener listener) {
+        this.showShoppingCartButton.addActionListener(listener);
+    }
+
+    public void setCheckoutButtonListener(ActionListener listener) {
+        this.checkoutButton.addActionListener(listener);
+    }
+
+    public void setLogoutButtonListener(ActionListener listener) {
+        this.logoutButton.addActionListener(listener);
     }
 }
