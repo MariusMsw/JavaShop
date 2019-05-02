@@ -10,13 +10,8 @@ public class Main {
 
         Products products = Products.getInstance();
 
-     //   products.printAllProducts();
-
         ProductsJTable view = new ProductsJTable();
 
-        ProductsController controller = new ProductsController(view,products);
-
-
+        ProductsController controller = new ProductsController(view, products);
     }
-
 }

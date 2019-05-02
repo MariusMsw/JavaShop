@@ -83,7 +83,7 @@ public class Users {
         User user = new User(username, password);
         users.add(user);
 
-        PreparedStatement statement = null;
+        PreparedStatement statement;
 
         try {
             statement = connection.prepareStatement("insert into users(username,password) VALUES(?,?)");

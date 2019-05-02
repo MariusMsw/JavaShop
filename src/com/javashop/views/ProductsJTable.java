@@ -1,12 +1,9 @@
 package com.javashop.views;
 
-import com.javashop.data.*;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class ProductsJTable {
 

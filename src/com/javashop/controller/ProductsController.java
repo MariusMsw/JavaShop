@@ -13,12 +13,10 @@ import java.util.Objects;
 public class ProductsController {
 
     private ProductsJTable view;
-    private Products products;
     private Users users;
 
     public ProductsController(ProductsJTable view, Products products) {
         this.view = view;
-        this.products = products;
 
         this.view.setLoginButtonActionListener(new LoginButtonActionListener());
         this.view.setRegisterButtonActionListener(new RegisterButtonActionListener());
@@ -31,7 +29,7 @@ public class ProductsController {
 
         ArrayList<Product> theProducts = Products.getAllProducts();
 
-        String[][] data = null;
+        String[][] data;
         if (theProducts != null) {
             data = new String[theProducts.size()][3];
         } else {
@@ -75,17 +73,16 @@ public class ProductsController {
             if (result == JOptionPane.YES_OPTION) {
                 System.out.println("You entered " +
                         username.getText() + ", " +
-                        password.getText());
+                        String.valueOf(password.getPassword()));
 
-                if (users.findUser(username.getText().trim(), password.getText().trim())) {
-                    System.out.println("Exista!");
+                if (users.findUser(username.getText().trim(), String.valueOf(password.getPassword()).trim())) {
+                    JOptionPane.showMessageDialog(view.getMainFrame(), "Successful login!");
                     view.setContent(new AdminGUI().getJPanel());
 
                 } else {
-                    System.out.println("Nu exista!");
+                    JOptionPane.showMessageDialog(view.getMainFrame(), "Can't connect!\n" +
+                            "Try again.");
                 }
-            } else {
-                System.out.println("User canceled / closed the dialog, result = " + result);
             }
         }
     }
@@ -112,28 +109,20 @@ public class ProductsController {
                     inputs,
                     "REGISTER", JOptionPane.DEFAULT_OPTION
             );
-
-
             // If yes option was selected try to
             // connect the user
             //
-            if(result == JOptionPane.YES_OPTION) {
-
+            if (result == JOptionPane.YES_OPTION) {
                 //
                 // If user exists in DB, then alert him/her
                 //
-                if (users.findUser(username.getText().trim(), password.getText().trim())) {
-                    System.out.println(" User exista! (register)");
+                if (users.findUser(username.getText().trim(), String.valueOf(password.getPassword()).trim())) {
+                    JOptionPane.showMessageDialog(view.getMainFrame(), "User already exists!");
                 } else {
-
                     // If there is no user them add him/her
-                    //
-                    Users.addUser(username.getText().trim(), password.getText().trim());
+                    JOptionPane.showMessageDialog(view.getMainFrame(), "Successful register!");
+                    Users.addUser(username.getText().trim(), String.valueOf(password.getPassword()).trim());
                 }
-            }else {
-
-                // User canceled the dialog
-                System.out.println("User canceled the dialog");
             }
         }
     }
