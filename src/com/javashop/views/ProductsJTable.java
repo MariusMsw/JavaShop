@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.concurrent.Flow;
 
 public class ProductsJTable {
 
@@ -12,11 +11,12 @@ public class ProductsJTable {
     private JTable table;
     private JButton loginButton;
     private JButton registerButton;
+    private JSplitPane splitPane;
 
     public ProductsJTable() {
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
+        splitPane = new JSplitPane();
         //
         // Creating the main frame which displays
         // products table, login and register buttons
@@ -27,7 +27,11 @@ public class ProductsJTable {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setResizable(true);
 
-        mainFrame.setLayout(new FlowLayout(FlowLayout.CENTER));//divide the frame in 2 panels
+        mainFrame.setLayout(new GridLayout());//divide the frame in 2 panels
+        mainFrame.getContentPane().add(splitPane);
+
+        splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        splitPane.setDividerLocation(200);
 
         JPanel btnPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));//the buttons panel that will be divided in 2 sides (the 2 buttons)
 
@@ -49,7 +53,9 @@ public class ProductsJTable {
         btnPnl.add(loginButton);
         btnPnl.add(registerButton);
 
-        mainFrame.add(btnPnl, 1);//the panel with the buttons
+        splitPane.setTopComponent(scrollPane);
+        splitPane.setBottomComponent(btnPnl);
+
         mainFrame.setVisible(true);
     }
 
@@ -76,8 +82,8 @@ public class ProductsJTable {
 
     public void setContent(JPanel panel) {
 
-        mainFrame.getContentPane().remove(1);
+        splitPane.setBottomComponent(panel);
+        splitPane.setDividerLocation(200);
         mainFrame.repaint();
-        mainFrame.add(panel,BorderLayout.EAST);
     }
 }

@@ -8,7 +8,8 @@ public class UserGUI {
 
     public UserGUI() {
         userPanel = new JPanel();
-
+        JTextField textField = new JTextField("asfasfrtgsdgsdgsdas");
+        userPanel.add(textField);
     }
 
     public JPanel getJPanel() {
