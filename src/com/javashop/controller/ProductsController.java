@@ -1,5 +1,6 @@
 package com.javashop.controller;
 
+import com.javashop.Main;
 import com.javashop.Utils;
 import com.javashop.data.*;
 import com.javashop.views.AdminGUI;
@@ -25,14 +26,15 @@ public class ProductsController {
 
     public ProductsController(ProductsJTable view, Products products) {
         this.view = view;
+        this.users = Users.getInstance();
+        this.products = products;
+        ProductsJTable.setProductsForJTable(this.view.getTable(), convertProductsToData(Products.getAllProducts()));
+
 
         this.view.setLoginButtonActionListener(new LoginButtonActionListener());
         this.view.setRegisterButtonActionListener(new RegisterButtonActionListener());
         this.view.setTableItemsListener(new TableItemMouseAdapter());
 
-        this.view.setProductsForJTable(this.view.getTable(), convertProductsToData(Products.getAllProducts()));
-        this.users = Users.getInstance();
-        this.products = products;
     }
 
    public static String[][] convertProductsToData(ArrayList<Product> theProducts) {
@@ -97,6 +99,7 @@ public class ProductsController {
 
                         view.setContent(userGUI.getJPanel());
                         Utils.loggedUser = users.getUser(username.getText().trim(), String.valueOf(password.getPassword()).trim());
+
                     }
                 } else {
                     JOptionPane.showMessageDialog(view.getMainFrame(), "Can't connect!\n" +
@@ -151,6 +154,7 @@ public class ProductsController {
         public void mouseClicked(MouseEvent e) {
 
             Utils.productSelected = view.getTable().rowAtPoint(e.getPoint());
+            //System.out.println("ai dat click pe " + view.getTable());
 
         }
     }
@@ -161,5 +165,19 @@ public class ProductsController {
 
     public AdminGUI getAdminGUI() {
         return adminGUI;
+    }
+
+
+    // Set proper UI(bottom panel with buttons) when back button is pressed
+    public void setUserGUItoView(){
+        view.setContent(userGUI.getJPanel());
+    }
+
+    public void setAdminGUIToView(){
+        view.setContent(adminGUI.getJPanel());
+    }
+
+    public ProductsJTable getView(){
+        return view;
     }
 }

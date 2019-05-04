@@ -1,14 +1,25 @@
 package com.javashop;
 
 import com.javashop.controller.ProductsController;
+import com.javashop.controller.ShoppingCartController;
 import com.javashop.controller.UserController;
 import com.javashop.data.Products;
 import com.javashop.data.Users;
 import com.javashop.views.ProductsJTable;
+import com.javashop.views.ShoppingCartGUI;
 
 import java.util.logging.Handler;
 
+/*
+interface setupShoppingCartController{
+    public void setUpControllerAfterUsedHasLogged();
+}
+*/
 public class Main {
+
+    private static ProductsController controller;
+    private static ShoppingCartController shoppingCartController;
+    private static UserController userController;
 
     public static void main(String[] args) {
 
@@ -18,18 +29,25 @@ public class Main {
 
         ProductsJTable view = new ProductsJTable();
 
-        ProductsController controller = new ProductsController(view, products);
+        controller = new ProductsController(view, products);
+
 
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        // your code here
-                        UserController userController = new UserController(controller.getUserGUI(), users, products);
+                        userController = new UserController(controller.getUserGUI(), users, products);
                     }
                 },
                 4000
         );
+
+    }
+
+
+    public static void setUpControllerAfterUsedHasLogged() {
+
+        shoppingCartController = new ShoppingCartController(userController.getShoppingCartGUI(),controller);
 
     }
 }

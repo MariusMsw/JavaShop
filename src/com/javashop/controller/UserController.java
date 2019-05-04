@@ -1,5 +1,6 @@
 package com.javashop.controller;
 
+import com.javashop.Main;
 import com.javashop.Utils;
 import com.javashop.data.Products;
 import com.javashop.data.User;
@@ -15,10 +16,12 @@ import java.awt.event.ActionListener;
 
 public class UserController {
 
-    private UserGUI view;
 
     private Products products;
     private Users users;
+
+    private UserGUI view;
+    private ShoppingCartGUI shoppingCartGUI;
 
     public UserController(UserGUI view, Users users, Products products) {
 
@@ -48,8 +51,18 @@ public class UserController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            new ShoppingCartGUI(Utils.loggedUser);
+
+            shoppingCartGUI = new ShoppingCartGUI(Utils.loggedUser);
+
+            //
+            // Callback function to setup ShoppingCartController
+            //
+            Main.setUpControllerAfterUsedHasLogged();
+
         }
     }
 
+    public ShoppingCartGUI getShoppingCartGUI(){
+        return shoppingCartGUI;
+    }
 }

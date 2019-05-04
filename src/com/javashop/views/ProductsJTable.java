@@ -105,4 +105,8 @@ public class ProductsJTable {
         return table;
     }
 
+    public void setTable(JTable table){
+        this.table = table;
+    }
+
 }
