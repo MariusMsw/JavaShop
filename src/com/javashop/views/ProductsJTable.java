@@ -65,9 +65,9 @@ public class ProductsJTable {
         mainFrame.setVisible(true);
     }
 
-    public static void setProductsForJTable(JTable table, String[][] data) {
+    public static void setProductsForJTable(JTable table, String[][] data, String column1, String column2, String column3) {
 
-        String[] columnNames = {"Name", "Price", "Stock"};
+        String[] columnNames = {column1,column2,column3};
 
         DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
         table.setModel(tableModel);

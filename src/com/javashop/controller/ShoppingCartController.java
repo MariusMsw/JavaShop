@@ -6,17 +6,19 @@ import com.javashop.data.Products;
 import com.javashop.views.ProductsJTable;
 import com.javashop.views.ShoppingCartGUI;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ShoppingCartController {
 
     private ShoppingCartGUI view;
-    private ArrayList<Product> shoppingCart;
+    private Map<Product,Integer> shoppingCart;
 
     // used when user goes back to products' view
     // in BackButtonActionListener class
@@ -30,6 +32,7 @@ public class ShoppingCartController {
 
          this.view.setBackButtonActionListener(new BackButtonActionListener());
          this.view.setTableMouseAdapter(new TableItemMouseAdapter());
+         this.view.setRemoveButtonActionListener(new RemoveProductButtonActionListener());
     }
 
     class BackButtonActionListener implements ActionListener{
@@ -37,7 +40,8 @@ public class ShoppingCartController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            ProductsJTable.setProductsForJTable(view.getTable(),ProductsController.convertProductsToData(Products.getAllProducts()));
+            ProductsJTable.setProductsForJTable(view.getTable(),ProductsController.convertProductsToData(Products.getAllProducts()),
+                                                "Name","Price","Stock");
             productsController.setUserGUItoView();
 
         }
@@ -52,4 +56,21 @@ public class ShoppingCartController {
         }
     }
 
+    class RemoveProductButtonActionListener implements ActionListener{
+
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+
+            if (Utils.productSelected == -1) {
+                JOptionPane.showMessageDialog(view.getTable(), "Please select a product!");
+            } else {
+
+                Utils.loggedUser.removeFromShoppingCart(Utils.loggedUser.getProductAtIndex(Utils.productSelected));
+                view.refreshDataFromTable();
+                JOptionPane.showMessageDialog(view.getTable(), "The product has been removed!");
+            }
+        }
+    }
 }

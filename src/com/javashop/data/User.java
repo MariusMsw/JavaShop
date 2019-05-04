@@ -1,13 +1,15 @@
 package com.javashop.data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class User {
 
     private int id;
     private String username;
     private String password;
-    private ArrayList<Product> shoppingCart = new ArrayList<>();
+    private Map<Product,Integer> shoppingCart = new HashMap<>();
 
     public User() {
     }
@@ -37,29 +39,44 @@ public class User {
         this.password = password;
     }
 
-    public ArrayList<Product> getShoppingCart() {
+    public Map<Product,Integer> getShoppingCart() {
         return shoppingCart;
     }
 
-    public void setShoppingCart(ArrayList<Product> shoppingCart) {
-        this.shoppingCart = shoppingCart;
-    }
-
     public void addToShoppingCart(Product product){
-        shoppingCart.add(product);
+
+        if(!shoppingCart.containsKey(product)){
+            shoppingCart.put(product,1);
+        }else {
+            int quantity = shoppingCart.get(product);
+            shoppingCart.remove(product);
+            shoppingCart.put(product,++quantity);
+        }
     }
 
-    public int getProductQuantity(Product product){
+    public void removeFromShoppingCart(Product product){
 
-        int quantity = 0;
+        if(shoppingCart.containsKey(product)){
 
-        for(Product prod : shoppingCart){
-            if(prod.getName().equals(product.getName())){
-                quantity++;
+            int quantity = shoppingCart.get(product);
+            shoppingCart.remove(product);
+            quantity--;
+            if(quantity > 0) {
+                shoppingCart.put(product,quantity);
             }
         }
+    }
 
-        return quantity;
+    public Product getProductAtIndex(int index){
+
+        int i = -1;
+        for (Map.Entry<Product,Integer> product : shoppingCart.entrySet()){
+            i++;
+            if(i == index){
+                return product.getKey();
+            }
+        }
+        return null;
     }
 
     @Override

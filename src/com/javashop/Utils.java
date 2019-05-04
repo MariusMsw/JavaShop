@@ -7,5 +7,4 @@ public class Utils {
     public static User loggedUser;
     public static int productSelected = -1;
 
-
 }

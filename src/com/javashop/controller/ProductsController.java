@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class ProductsController {
@@ -28,7 +30,8 @@ public class ProductsController {
         this.view = view;
         this.users = Users.getInstance();
         this.products = products;
-        ProductsJTable.setProductsForJTable(this.view.getTable(), convertProductsToData(Products.getAllProducts()));
+        ProductsJTable.setProductsForJTable(this.view.getTable(), convertProductsToData(Products.getAllProducts()),
+                                                "Name","Price","Stock");
 
 
         this.view.setLoginButtonActionListener(new LoginButtonActionListener());
@@ -56,11 +59,38 @@ public class ProductsController {
             index++;
         }
 
-        System.out.println("Program started!");
+        //System.out.println("Program started!");
 
         return data;
 
     }
+
+    public static String[][] convertProductsToData(Map<Product,Integer> theProducts) {
+
+        String[][] data;
+        if (theProducts != null) {
+            data = new String[theProducts.size()][3];
+        } else {
+            data = new String[0][0];
+        }
+
+        int index = 0;
+
+        for (Map.Entry<Product,Integer> product : theProducts.entrySet()){
+
+            data[index][0] = product.getKey().getName();
+            data[index][1] = String.valueOf(product.getKey().getPrice());
+            data[index][2] = String.valueOf(product.getValue());
+
+            index++;
+        }
+
+        //System.out.println("Program started!");
+
+        return data;
+
+    }
+
 
     class LoginButtonActionListener implements ActionListener {
 
