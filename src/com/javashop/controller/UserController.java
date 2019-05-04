@@ -3,23 +3,18 @@ package com.javashop.controller;
 import com.javashop.Main;
 import com.javashop.Utils;
 import com.javashop.data.Products;
-import com.javashop.data.User;
 import com.javashop.data.Users;
 import com.javashop.views.ProductsJTable;
 import com.javashop.views.ShoppingCartGUI;
 import com.javashop.views.UserGUI;
-import com.sun.source.doctree.UnknownInlineTagTree;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static com.javashop.controller.ProductsController.convertProductsToData;
-
 public class UserController {
 
     private Products products;
-
     private Users users;
 
     private UserGUI view;
@@ -38,70 +33,65 @@ public class UserController {
         this.view.setCheckoutButtonListener(new CheckoutButtonListenerButton());
     }
 
-    public ShoppingCartGUI getShoppingCartGUI(){
+    public ShoppingCartGUI getShoppingCartGUI() {
         return shoppingCartGUI;
     }
 
-    public void refreshProductsInTable(){
-
-        if(shoppingCartGUI.getTable() != null) {
-
+    private void refreshProductsInTable() {
+        /* if there are products in table, we read again the products from shopping cart (HashMap) and show them in interface*/
+        if (shoppingCartGUI.getTable() != null) {
             ProductsJTable.setProductsForJTable(shoppingCartGUI.getTable(), ProductsController.convertProductsToData(Products.getAllProducts()),
-                                            "Name", "Price", "Stock");
-        }else {
+                    "Name", "Price", "Stock");
+        } else {
             ProductsJTable.setProductsForJTable(productsJTable.getTable(), ProductsController.convertProductsToData(Products.getAllProducts()),
                     "Name", "Price", "Stock");
         }
     }
 
     class AddToCartButton implements ActionListener {
-
+        /* when we press Add Product button, we use the productSelected that holds the row of
+         * the product in DB and, if it is -1, it means that no product has been selected*/
         @Override
         public void actionPerformed(ActionEvent e) {
 
             if (Utils.productSelected == -1) {
                 JOptionPane.showMessageDialog(view.getJPanel(), "Please select a product!");
-            } else {
+            } else {/* but, if it is different from -1, it means that a product has been selected,
+                        so we add the product from that row in shopping cart( HashMap)*/
                 users.addProductToShoppingCart(products.getProductAt(Utils.productSelected), Utils.loggedUser);
                 JOptionPane.showMessageDialog(view.getJPanel(), "The product has been added!");
             }
         }
-
     }
 
     class ShowSoppingCartButton implements ActionListener {
-
+        /* when we press show shopping cart button, we create a new interface for shopping cart for efficiency*/
         @Override
         public void actionPerformed(ActionEvent e) {
 
             shoppingCartGUI = new ShoppingCartGUI(Utils.loggedUser);
 
-            //
-            // Callback function to setup ShoppingCartController
-            //
+            /* Callback function to setup ShoppingCartController*/
+
             Main.setUpControllerAfterUsedHasLogged();
-
         }
-
     }
 
-    class CheckoutButtonListenerButton implements ActionListener{
-
+    class CheckoutButtonListenerButton implements ActionListener {
+        /* when we press checkout button, we check if the shopping cart is empty(there is no product in HashMap)*/
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if(Utils.loggedUser.isShoppingCartEmpty()) {
+            if (Utils.loggedUser.isShoppingCartEmpty()) {/*if so, alert the user and do nothing*/
                 JOptionPane.showMessageDialog(view.getJPanel(), "The shopping cart is empty!");
-            }else {
+            } else {/*else, if there are products in shopping cart(HashMap),
+                      we remove the products one by one in DB, alert the user that everything is ok*/
                 Products.removeProductFromDB(Utils.loggedUser.getShoppingCart());
-                JOptionPane.showMessageDialog(view.getJPanel(), "Check-out successful!");
-                Utils.loggedUser.emptyShoppingCart();
-                refreshProductsInTable();
-
-                System.out.println("click pe check-out!");
+                JOptionPane.showMessageDialog(view.getJPanel(), "Checkout successful!");
+                Utils.loggedUser.emptyShoppingCart();   /*clear all the products in shopping cart(in HashMap)*/
+                refreshProductsInTable();   /* and refresh the table (read again the products from DB and display them
+                                                in UserGUI*/
             }
         }
     }
-
-
 }

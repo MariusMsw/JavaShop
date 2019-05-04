@@ -1,15 +1,14 @@
 package com.javashop.data;
 
-import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class Users {
 
-    // actual list of users
+    /* actual list of users */
     private static ArrayList<User> users = new ArrayList<>();
 
-    private static Users instance = null;
+    private static Users instance = null; /* we make Users class singleton because there is only one instance of all users needed*/
 
     private static Connection connection;
 
@@ -22,7 +21,6 @@ public class Users {
             connection = DriverManager.getConnection(DATABASE_URL,
                     username,
                     password);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -33,20 +31,17 @@ public class Users {
         if (instance == null) {
 
             instance = new Users();
-
             try {
                 fetchUsersFromDB();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-
         return instance;
     }
 
     private static void fetchUsersFromDB() throws SQLException {
-
-
+        /* here, we connect to DB users table and get all the users and add them to the ArrayList*/
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from users");
 
@@ -54,16 +49,12 @@ public class Users {
             String userName = resultSet.getString("username");
             String userPassword = resultSet.getString("password");
 
-            //addUser(userName, userPassword);
-            users.add(new User(userName,userPassword));
+            users.add(new User(userName, userPassword));
         }
-
     }
 
-
-
     public boolean findUser(String username, String password) {
-
+        /* here we check if a user with specified username and password exists in DB*/
         for (User user : users) {
             if (user.getUsername().equals(username) &&
                     user.getPassword().equals(password)) {
@@ -73,26 +64,20 @@ public class Users {
         return false;
     }
 
-    public User getUser(String username, String password){
-
+    public User getUser(String username, String password) {
+        /* we return the user with a specified username and password from DB but, if there is no instance of that user, we return null*/
         for (User user : users) {
             if (user.getUsername().equals(username) &&
                     user.getPassword().equals(password)) {
-
                 return user;
             }
         }
-
         return null;
     }
 
-    public void printAllUsers() {
-        for (User user : users) {
-            System.out.println(user);
-        }
-    }
-
     public static void addUser(String username, String password) {
+        /*when register button is used and we create a new account, save it in DB by using prepared statements
+         * also, save that user in users ArrayList*/
         User user = new User(username, password);
         users.add(user);
 
@@ -103,18 +88,13 @@ public class Users {
             statement.setString(1, username);
             statement.setString(2, password);
             statement.execute();
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void addProductToShoppingCart(Product product, User user){
-
+    public void addProductToShoppingCart(Product product, User user) {
+        /* add a specific product in a shopping cart from a specific user (mostly, logged user)*/
         user.addToShoppingCart(product);
-
     }
-
-
 }

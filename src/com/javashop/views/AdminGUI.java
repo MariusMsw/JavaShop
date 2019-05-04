@@ -12,6 +12,7 @@ public class AdminGUI {
     private JButton logoutButton = new JButton("Logout");
 
     public AdminGUI() {
+
         adminPanel = new JPanel();
         adminPanel.setLayout(new GridLayout(1, 4));
         adminPanel.add(addProductInDataBaseButton);
@@ -21,7 +22,7 @@ public class AdminGUI {
     }
 
     public JPanel getJPanel() {
+
         return adminPanel;
     }
-
 }

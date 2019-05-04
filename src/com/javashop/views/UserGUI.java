@@ -9,7 +9,7 @@ public class UserGUI {
     private JPanel userPanel;
     private JButton addToShoppingCartButton = new JButton("Add to cart");
     private JButton showShoppingCartButton = new JButton("Show cart");
-    private JButton checkoutButton = new JButton("Check-out");
+    private JButton checkoutButton = new JButton("Checkout");
     private JButton logoutButton = new JButton("Logout");
 
     public UserGUI() {
@@ -20,7 +20,6 @@ public class UserGUI {
         userPanel.add(showShoppingCartButton);
         userPanel.add(checkoutButton);
         userPanel.add(logoutButton);
-
     }
 
     public JPanel getJPanel() {

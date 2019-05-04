@@ -6,15 +6,7 @@ import com.javashop.controller.UserController;
 import com.javashop.data.Products;
 import com.javashop.data.Users;
 import com.javashop.views.ProductsJTable;
-import com.javashop.views.ShoppingCartGUI;
 
-import java.util.logging.Handler;
-
-/*
-interface setupShoppingCartController{
-    public void setUpControllerAfterUsedHasLogged();
-}
-*/
 public class Main {
 
     private static ProductsController controller;
@@ -31,23 +23,19 @@ public class Main {
 
         controller = new ProductsController(view, products);
 
-
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        userController = new UserController(controller.getUserGUI(), users, products,view);
+                        userController = new UserController(controller.getUserGUI(), users, products, view);
                     }
                 },
                 4000
         );
-
     }
-
 
     public static void setUpControllerAfterUsedHasLogged() {
 
-        shoppingCartController = new ShoppingCartController(userController.getShoppingCartGUI(),controller);
-
+        shoppingCartController = new ShoppingCartController(userController.getShoppingCartGUI(), controller);
     }
 }

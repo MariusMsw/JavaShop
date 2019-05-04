@@ -5,73 +5,68 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class ProductsJTable {
 
-    private JFrame mainFrame;
-    private JTable table;
+    private JFrame mainFrame; /* the only frame needed in GUI*/
+    private JTable table;   /* the table with products which is shown in top panel*/
+    /* login and register buttons shown in the first GUI shown*/
     private JButton loginButton;
     private JButton registerButton;
-    private static JSplitPane splitPane;
+
+    private static JSplitPane splitPane;    /* the split pane added first in main frame which consists in top + bottom panel*/
     private Dimension screenSize;
 
     public ProductsJTable() {
 
-        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        screenSize = Toolkit.getDefaultToolkit().getScreenSize();   /* here we get the screen size to properly show the GUI application*/
         splitPane = new JSplitPane();
-        //
-        // Creating the main frame which displays
-        // products table, login and register buttons
-        //
-        mainFrame = new JFrame("Shop");
+
+         /*Creating the main frame which displays
+         products table, login and register buttons*/
+
+        mainFrame = new JFrame("Shop"); /* Create the main frame and set the dimensions for it*/
         mainFrame.setSize((int) screenSize.getWidth() / 2,
                 (int) screenSize.getHeight() / 2);
+
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setResizable(false);
 
-        mainFrame.setLayout(new GridLayout());//divide the frame in 2 panels
+        mainFrame.setLayout(new GridLayout());  /* we use GridLayout in main frame to display more panels*/
         mainFrame.getContentPane().add(splitPane);
 
-        splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);    /* set the orientation and the separation line from top and bottom panels*/
         splitPane.setDividerLocation(((int) screenSize.getHeight() / 2) * 80 / 100);
 
-        JPanel btnPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));//the buttons panel that will be divided in 2 sides (the 2 buttons)
+        JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));    /*the buttons panel that will be divided in 2 sides (the 2 buttons)*/
 
-        //
-        // show table in main panel
-        //
-
+        /* here we create the table with products and add it to the main frame*/
         table = new JTable();
         table.setBounds(30, 40, 200, 300);
 
-
-        JScrollPane scrollPane = new JScrollPane(table);//the panel with the products
+        JScrollPane scrollPane = new JScrollPane(table);    /*the panel with the products*/
         mainFrame.add(scrollPane, 0);
-        //
-        // create the 2 buttons and add them to the buttons panel
-        //
+
+        /* create the 2 buttons and add them to the buttons panel*/
 
         loginButton = new JButton("LOGIN");
         registerButton = new JButton("REGISTER");
 
-        btnPnl.add(loginButton);
-        btnPnl.add(registerButton);
+        buttonsPanel.add(loginButton);
+        buttonsPanel.add(registerButton);
 
-        splitPane.setTopComponent(scrollPane);
-        splitPane.setBottomComponent(btnPnl);
+        splitPane.setTopComponent(scrollPane);  /* set the top component of the split panel with the products table*/
+        splitPane.setBottomComponent(buttonsPanel); /* and the bottom component with the buttons panel*/
 
         mainFrame.setVisible(true);
     }
 
     public static void setProductsForJTable(JTable table, String[][] data, String column1, String column2, String column3) {
-
-        String[] columnNames = {column1,column2,column3};
-
+        /* here we create the GUI for the table with products by using the data
+         * gotten from the DB(the products) and column names*/
+        String[] columnNames = {column1, column2, column3};
         DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
         table.setModel(tableModel);
-
     }
 
     public void setLoginButtonActionListener(ActionListener listener) {
@@ -87,26 +82,21 @@ public class ProductsJTable {
     }
 
     public void setContent(JPanel panel) {
-
+        /* we set the bottom component to another panel because mostly the top component will be the panel with the products table*/
         splitPane.setBottomComponent(panel);
         splitPane.setDividerLocation(((int) screenSize.getHeight() / 2) * 80 / 100);
-        mainFrame.repaint();
+        mainFrame.repaint();    /* with this we refresh the main frame to show the update*/
     }
 
     public void setTableItemsListener(MouseAdapter adapter) {
         table.addMouseListener(adapter);
     }
 
-    public static JSplitPane getSplitPane() {
+    static JSplitPane getSplitPane() {
         return splitPane;
     }
 
     public JTable getTable() {
         return table;
     }
-
-    public void setTable(JTable table){
-        this.table = table;
-    }
-
 }
