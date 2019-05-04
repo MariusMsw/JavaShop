@@ -14,23 +14,44 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static com.javashop.controller.ProductsController.convertProductsToData;
+
 public class UserController {
 
-
     private Products products;
+
     private Users users;
 
     private UserGUI view;
     private ShoppingCartGUI shoppingCartGUI;
+    private ProductsJTable productsJTable;
 
-    public UserController(UserGUI view, Users users, Products products) {
+    public UserController(UserGUI view, Users users, Products products, ProductsJTable productsJTable) {
 
         this.view = view;
         this.users = users;
         this.products = products;
+        this.productsJTable = productsJTable;
 
         this.view.setAddToShoppingCartButtonListener(new AddToCartButton());
         this.view.setShowShoppingCartButtonListener(new ShowSoppingCartButton());
+        this.view.setCheckoutButtonListener(new CheckoutButtonListenerButton());
+    }
+
+    public ShoppingCartGUI getShoppingCartGUI(){
+        return shoppingCartGUI;
+    }
+
+    public void refreshProductsInTable(){
+
+        if(shoppingCartGUI.getTable() != null) {
+
+            ProductsJTable.setProductsForJTable(shoppingCartGUI.getTable(), ProductsController.convertProductsToData(Products.getAllProducts()),
+                                            "Name", "Price", "Stock");
+        }else {
+            ProductsJTable.setProductsForJTable(productsJTable.getTable(), ProductsController.convertProductsToData(Products.getAllProducts()),
+                    "Name", "Price", "Stock");
+        }
     }
 
     class AddToCartButton implements ActionListener {
@@ -45,6 +66,7 @@ public class UserController {
                 JOptionPane.showMessageDialog(view.getJPanel(), "The product has been added!");
             }
         }
+
     }
 
     class ShowSoppingCartButton implements ActionListener {
@@ -60,9 +82,26 @@ public class UserController {
             Main.setUpControllerAfterUsedHasLogged();
 
         }
+
     }
 
-    public ShoppingCartGUI getShoppingCartGUI(){
-        return shoppingCartGUI;
+    class CheckoutButtonListenerButton implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if(Utils.loggedUser.isShoppingCartEmpty()) {
+                JOptionPane.showMessageDialog(view.getJPanel(), "The shopping cart is empty!");
+            }else {
+                Products.removeProductFromDB(Utils.loggedUser.getShoppingCart());
+                JOptionPane.showMessageDialog(view.getJPanel(), "Check-out successful!");
+                Utils.loggedUser.emptyShoppingCart();
+                refreshProductsInTable();
+
+                System.out.println("click pe check-out!");
+            }
+        }
     }
+
+
 }

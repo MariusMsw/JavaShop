@@ -4,6 +4,7 @@ import com.javashop.data.Product;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Products {
 
@@ -13,6 +14,14 @@ public class Products {
 
     // setup for making the class singleton
     private static Products instance = null;
+
+
+    static final String DATABASE_URL = "jdbc:mysql://db4free.net:3306/shopdb2019";
+    static final String username = "proiectjava2019";
+    static final String password = "proiectjava2019";
+
+    private static Connection connection;
+
 
     private Products() {
     }
@@ -31,13 +40,10 @@ public class Products {
 
     // get data from database server
     private static void fetchProductsFromDatabase() {
-        final String DATABASE_URL = "jdbc:mysql://db4free.net:3306/shopdb2019";
-        final String username = "proiectjava2019";
-        final String password = "proiectjava2019";
 
 
         try {
-            Connection connection = DriverManager.getConnection(DATABASE_URL,
+            connection = DriverManager.getConnection(DATABASE_URL,
                     username,
                     password);
 
@@ -54,11 +60,12 @@ public class Products {
             while (resultSet.next()) {
 
 
+                int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 double price = resultSet.getDouble("price");
                 int quantity = resultSet.getInt("quantity");
 
-                Product product = new Product(name, price, quantity);
+                Product product = new Product(id,name, price, quantity);
                 products.add(product);
             }
         } catch (SQLException e) {
@@ -80,6 +87,39 @@ public class Products {
 
     public Product getProductAt(int index) {
         return products.get(index);
+    }
+
+    public static void removeProductFromDB(Map<Product,Integer> productAndQuantity){
+
+        System.out.println("removeProductFromDB()" + productAndQuantity.size());
+
+        try {
+
+            for(Map.Entry<Product,Integer> productIntegerEntry : productAndQuantity.entrySet()){
+
+                String query = "update products set quantity = ? where id = ?";
+
+                PreparedStatement preparedStmt = connection.prepareStatement(query);
+                preparedStmt.setInt(1, productIntegerEntry.getKey().getQuantity() - productIntegerEntry.getValue() );
+                preparedStmt.setInt(2, productIntegerEntry.getKey().getId());
+                preparedStmt.executeUpdate();
+
+                System.out.println( " id=" + productIntegerEntry.getKey().getId() + " name=" +
+                                        productIntegerEntry.getKey().getName());
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        refreshProducts();
+
+    }
+
+    private static void refreshProducts(){
+        products.clear();
+        fetchProductsFromDatabase();
     }
 
 }

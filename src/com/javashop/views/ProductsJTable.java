@@ -29,7 +29,7 @@ public class ProductsJTable {
         mainFrame.setSize((int) screenSize.getWidth() / 2,
                 (int) screenSize.getHeight() / 2);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setResizable(true);
+        mainFrame.setResizable(false);
 
         mainFrame.setLayout(new GridLayout());//divide the frame in 2 panels
         mainFrame.getContentPane().add(splitPane);

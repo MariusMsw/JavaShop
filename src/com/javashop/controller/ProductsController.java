@@ -184,7 +184,9 @@ public class ProductsController {
         public void mouseClicked(MouseEvent e) {
 
             Utils.productSelected = view.getTable().rowAtPoint(e.getPoint());
-            //System.out.println("ai dat click pe " + view.getTable());
+            System.out.println("ai dat click pe " + view.getTable().rowAtPoint(e.getPoint()) + " id= " +
+                                Products.getAllProducts().get(Utils.productSelected).getId() + " name=" +
+                                Products.getAllProducts().get(Utils.productSelected).getName());
 
         }
     }

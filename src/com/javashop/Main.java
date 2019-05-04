@@ -36,7 +36,7 @@ public class Main {
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        userController = new UserController(controller.getUserGUI(), users, products);
+                        userController = new UserController(controller.getUserGUI(), users, products,view);
                     }
                 },
                 4000

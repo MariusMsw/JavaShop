@@ -79,6 +79,14 @@ public class User {
         return null;
     }
 
+    public void emptyShoppingCart(){
+        shoppingCart.clear();
+    }
+
+    public boolean isShoppingCartEmpty(){
+        return shoppingCart.isEmpty();
+    }
+
     @Override
     public String toString() {
         return "User{" +
