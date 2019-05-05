@@ -9,7 +9,7 @@ import java.awt.event.MouseAdapter;
 public class ProductsJTable {
 
     private JFrame mainFrame; /* the only frame needed in GUI*/
-    private JTable table;   /* the table with products which is shown in top panel*/
+    private static JTable table;   /* the table with products which is shown in top panel*/
     /* login and register buttons shown in the first GUI shown*/
     private JButton loginButton;
     private JButton registerButton;
@@ -63,7 +63,7 @@ public class ProductsJTable {
     }
 
     public static void setProductsForJTable(JTable table, String[][] data, String column1, String column2, String column3) {
-        /* here we create the GUI for the table with products by using the data
+        /* here we create the GUI for the table with products by using the model
          * gotten from the DB(the products) and column names*/
         String[] columnNames = {column1, column2, column3};
         DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
@@ -97,7 +97,7 @@ public class ProductsJTable {
         return splitPane;
     }
 
-    public JTable getTable() {
+    public static JTable getTable() {
         return table;
     }
 

@@ -1,10 +1,11 @@
 package com.javashop;
 
+import com.javashop.controller.AdminController;
 import com.javashop.controller.ProductsController;
 import com.javashop.controller.ShoppingCartController;
 import com.javashop.controller.UserController;
-import com.javashop.data.Products;
-import com.javashop.data.Users;
+import com.javashop.model.Products;
+import com.javashop.model.Users;
 import com.javashop.views.ProductsJTable;
 
 public class Main {
@@ -12,6 +13,7 @@ public class Main {
     private static ProductsController controller;
     private static ShoppingCartController shoppingCartController;
     private static UserController userController;
+    private static AdminController adminController;
 
     public static void main(String[] args) {
 
@@ -28,6 +30,7 @@ public class Main {
                     @Override
                     public void run() {
                         userController = new UserController(controller.getUserGUI(), users, products, view);
+                        adminController = new AdminController(products, controller.getAdminGUI(), view);
                     }
                 },
                 4000

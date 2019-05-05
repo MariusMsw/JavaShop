@@ -1,6 +1,6 @@
 package com.javashop;
 
-import com.javashop.data.User;
+import com.javashop.model.User;
 
 public class Utils {
 

@@ -1,13 +1,13 @@
-package com.javashop.data;
+package com.javashop.model;
 
 public class Product {
 
-    private int id;
+    private int id = 0;
     private String name;
     private double price;
     private int quantity;
 
-    Product(int id, String name, double price, int quantity) {
+    public Product(int id, String name, double price, int quantity) {
         this.id = id;
         this.name = name;
         this.price = price;

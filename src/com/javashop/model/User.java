@@ -1,4 +1,4 @@
-package com.javashop.data;
+package com.javashop.model;
 
 import java.util.HashMap;
 import java.util.Map;

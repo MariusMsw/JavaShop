@@ -1,7 +1,7 @@
 package com.javashop.controller;
 
 import com.javashop.Utils;
-import com.javashop.data.*;
+import com.javashop.model.*;
 import com.javashop.views.AdminGUI;
 import com.javashop.views.ProductsJTable;
 import com.javashop.views.UserGUI;
@@ -40,9 +40,9 @@ public class ProductsController {
         this.view.setTableItemsListener(new TableItemMouseAdapter());
     }
 
-    static String[][] convertProductsToData(ArrayList<Product> theProducts) {
+    public static String[][] convertProductsToData(ArrayList<Product> theProducts) {
 
-        String[][] data;    //in data we have the products with their fields (name, price, quantity)
+        String[][] data;    //in model we have the products with their fields (name, price, quantity)
         if (theProducts != null) {  //if there are products
             data = new String[theProducts.size()][3];   //we create a matrix big enough to store them
         } else {

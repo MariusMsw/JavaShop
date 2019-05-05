@@ -1,4 +1,4 @@
-package com.javashop.data;
+package com.javashop.model;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -64,7 +64,7 @@ public class Products {
         return products.get(index);
     }
 
-    public static void removeProductFromDB(Map<Product, Integer> productAndQuantity) {
+    public static void removeProductsFromDB(Map<Product, Integer> productAndQuantity) {
         /* for each product in the Map parameter, we update the DB by removing that product using prepared statements*/
         try {
             for (Map.Entry<Product, Integer> productIntegerEntry : productAndQuantity.entrySet()) {
@@ -79,6 +79,25 @@ public class Products {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        refreshProducts();
+    }
+
+    public static void addProductToDB(Product product) {
+
+        try {
+            String query = "insert into products(id, name, price, quantity) values (?,?,?,?)";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, product.getId());
+            preparedStatement.setString(2, product.getName());
+            preparedStatement.setDouble(3, product.getPrice());
+            preparedStatement.setInt(4, product.getQuantity());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         refreshProducts();
     }
 

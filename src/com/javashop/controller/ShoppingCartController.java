@@ -1,8 +1,8 @@
 package com.javashop.controller;
 
 import com.javashop.Utils;
-import com.javashop.data.Product;
-import com.javashop.data.Products;
+import com.javashop.model.Product;
+import com.javashop.model.Products;
 import com.javashop.views.ProductsJTable;
 import com.javashop.views.ShoppingCartGUI;
 
@@ -38,7 +38,7 @@ public class ShoppingCartController {
         @Override
         public void actionPerformed(ActionEvent e) {
             /* when back button is pressed from show shopping cart interface,
-             * we set the products to display them by converting them to data. So we can show them
+             * we set the products to display them by converting them to model. So we can show them
              * in a table in top panel*/
             ProductsJTable.setProductsForJTable(view.getTable(), ProductsController.convertProductsToData(Products.getAllProducts()),
                     "Name", "Price", "Stock");

@@ -2,8 +2,8 @@ package com.javashop.views;
 
 import com.javashop.Utils;
 import com.javashop.controller.ProductsController;
-import com.javashop.data.Product;
-import com.javashop.data.User;
+import com.javashop.model.Product;
+import com.javashop.model.User;
 
 import javax.swing.*;
 import java.awt.*;

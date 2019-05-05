@@ -2,8 +2,8 @@ package com.javashop.controller;
 
 import com.javashop.Main;
 import com.javashop.Utils;
-import com.javashop.data.Products;
-import com.javashop.data.Users;
+import com.javashop.model.Products;
+import com.javashop.model.Users;
 import com.javashop.views.ProductsJTable;
 import com.javashop.views.ShoppingCartGUI;
 import com.javashop.views.UserGUI;
@@ -87,7 +87,7 @@ public class UserController {
                 JOptionPane.showMessageDialog(view.getJPanel(), "The shopping cart is empty!");
             } else {/*else, if there are products in shopping cart(HashMap),
                       we remove the products one by one in DB, alert the user that everything is ok*/
-                Products.removeProductFromDB(Utils.loggedUser.getShoppingCart());
+                Products.removeProductsFromDB(Utils.loggedUser.getShoppingCart());
                 JOptionPane.showMessageDialog(view.getJPanel(), "Checkout successful!");
                 Utils.loggedUser.emptyShoppingCart();   /*clear all the products in shopping cart(in HashMap)*/
                 refreshProductsInTable();   /* and refresh the table (read again the products from DB and display them
