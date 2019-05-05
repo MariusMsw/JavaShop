@@ -15,6 +15,7 @@ public class ProductsJTable {
     private JButton registerButton;
 
     private static JSplitPane splitPane;    /* the split pane added first in main frame which consists in top + bottom panel*/
+    private JPanel buttonsPanel;
     private Dimension screenSize;
 
     public ProductsJTable() {
@@ -38,7 +39,7 @@ public class ProductsJTable {
         splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);    /* set the orientation and the separation line from top and bottom panels*/
         splitPane.setDividerLocation(((int) screenSize.getHeight() / 2) * 80 / 100);
 
-        JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));    /*the buttons panel that will be divided in 2 sides (the 2 buttons)*/
+        buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));    /*the buttons panel that will be divided in 2 sides (the 2 buttons)*/
 
         /* here we create the table with products and add it to the main frame*/
         table = new JTable();
@@ -98,5 +99,9 @@ public class ProductsJTable {
 
     public JTable getTable() {
         return table;
+    }
+
+    public JPanel getButtonsPanel() {
+        return buttonsPanel;
     }
 }

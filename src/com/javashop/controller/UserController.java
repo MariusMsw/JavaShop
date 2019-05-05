@@ -30,7 +30,8 @@ public class UserController {
 
         this.view.setAddToShoppingCartButtonListener(new AddToCartButton());
         this.view.setShowShoppingCartButtonListener(new ShowSoppingCartButton());
-        this.view.setCheckoutButtonListener(new CheckoutButtonListenerButton());
+        this.view.setCheckoutButtonListener(new CheckoutButton());
+        this.view.setLogoutButtonListener(new LogoutButton());
     }
 
     public ShoppingCartGUI getShoppingCartGUI() {
@@ -77,7 +78,7 @@ public class UserController {
         }
     }
 
-    class CheckoutButtonListenerButton implements ActionListener {
+    class CheckoutButton implements ActionListener {
         /* when we press checkout button, we check if the shopping cart is empty(there is no product in HashMap)*/
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -92,6 +93,17 @@ public class UserController {
                 refreshProductsInTable();   /* and refresh the table (read again the products from DB and display them
                                                 in UserGUI*/
             }
+        }
+    }
+
+    class LogoutButton implements ActionListener {
+        /* when we click on Logout button, show the first screen with bottom panel consist of the 2 buttons:
+         * login and register*/
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JOptionPane.showMessageDialog(view.getJPanel(), "Logout successful!");
+            productsJTable.setContent(productsJTable.getButtonsPanel());
         }
     }
 }
