@@ -27,6 +27,8 @@ public class AdminGUI {
         adminPanel.add(removeProductFromDataBaseButton);
         adminPanel.add(modifyProductButton);
         adminPanel.add(logoutButton);
+
+        Utils.productSelected = -1;
     }
 
     public JPanel getJPanel() {

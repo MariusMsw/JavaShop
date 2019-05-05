@@ -1,5 +1,7 @@
 package com.javashop.views;
 
+import com.javashop.Utils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -20,6 +22,8 @@ public class UserGUI {
         userPanel.add(showShoppingCartButton);
         userPanel.add(checkoutButton);
         userPanel.add(logoutButton);
+
+        Utils.productSelected = -1;
     }
 
     public JPanel getJPanel() {

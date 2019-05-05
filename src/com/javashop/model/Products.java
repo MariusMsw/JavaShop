@@ -126,6 +126,24 @@ public class Products {
         refreshProducts();
     }
 
+    public static void modifyProductInDB(Product product) {
+        try {
+            String query = "update products set name = ?, price = ?, quantity = ? where id = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setDouble(2, product.getPrice());
+            preparedStatement.setInt(3, product.getQuantity());
+            preparedStatement.setInt(4, product.getId());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        refreshProducts();
+    }
+
     private static void refreshProducts() { /*There may be updates to DB so we refresh the products by clearing them all
                                             from ArrayList and read again from DB.*/
         products.clear();
