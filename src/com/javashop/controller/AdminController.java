@@ -26,6 +26,7 @@ public class AdminController {
         this.view.setAddProductInDataBaseButtonListener(new AddProductInDBButton());
         this.view.setRemoveProductFromDataBaseButtonListener(new RemoveProductFromDBButton());
         this.view.setModifyProductButtonListener(new ModifyProductInDB());
+        this.view.setLogoutButtonListener(new LogoutButton());
     }
 
     public class AddProductInDBButton implements ActionListener {
@@ -132,6 +133,15 @@ public class AdminController {
                     Utils.productSelected = -1;
                 }
             }
+        }
+    }
+
+    public class LogoutButton implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JOptionPane.showMessageDialog(view.getJPanel(), "Logout successful!");
+            productsJTable.setContent(productsJTable.getButtonsPanel());
         }
     }
 }
