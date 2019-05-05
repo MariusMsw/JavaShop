@@ -1,5 +1,6 @@
 package com.javashop.controller;
 
+import com.javashop.Utils;
 import com.javashop.model.Product;
 import com.javashop.model.Products;
 import com.javashop.model.Users;
@@ -9,6 +10,7 @@ import com.javashop.views.ProductsJTable;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class AdminController {
 
@@ -23,6 +25,7 @@ public class AdminController {
         this.productsJTable = productsJTable;
 
         this.view.setAddProductInDataBaseButtonListener(new AddProductInDBButton());
+        this.view.setRemoveProductFromDataBaseButtonListener(new RemoveProductFromDBButton());
     }
 
     public class AddProductInDBButton implements ActionListener {
@@ -62,6 +65,22 @@ public class AdminController {
                 Products.addProductToDB(product);
                 JOptionPane.showMessageDialog(view.getJPanel(), "Product added with succes!");
                 view.refreshDataFromTable();
+            }
+        }
+    }
+
+    public class RemoveProductFromDBButton implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (Utils.productSelected == -1) {  /* if there is no product selected, there is nothing to remove from DB
+                                                   and so, we notify the user*/
+                JOptionPane.showMessageDialog(view.getJPanel(), "Please select a product!");
+            } else {    /*else, if there is a product selected, we remove the product from ArrayList
+                          and refresh the panel with products table from the DB*/
+                Products.removeProductFromDB(Objects.requireNonNull(Products.getProductAtIndex(Utils.productSelected)));
+                view.refreshDataFromTable();
+                JOptionPane.showMessageDialog(view.getJPanel(), "The product has been removed!");
             }
         }
     }

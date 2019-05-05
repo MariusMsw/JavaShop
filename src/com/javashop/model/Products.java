@@ -82,6 +82,31 @@ public class Products {
         refreshProducts();
     }
 
+    public static Product getProductAtIndex(int index) {
+        int i = -1;
+        for (Product product : products) {
+            i++;
+            if (i == index) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public static void removeProductFromDB(Product product) {
+        try {
+            String query = "delete from products where id = ?";
+
+            PreparedStatement preparedStmt = connection.prepareStatement(query);
+            preparedStmt.setInt(1, product.getId());
+            preparedStmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        refreshProducts();
+    }
+
     public static void addProductToDB(Product product) {
 
         try {
