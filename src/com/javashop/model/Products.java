@@ -3,6 +3,7 @@ package com.javashop.model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 
 public class Products {
 
@@ -60,7 +61,7 @@ public class Products {
         return products;
     }
 
-    public Product getProductAt(int index) {
+    public static Product getProductAt(int index) {
         return products.get(index);
     }
 
@@ -75,22 +76,16 @@ public class Products {
                 preparedStmt.setInt(1, productIntegerEntry.getKey().getQuantity() - productIntegerEntry.getValue());
                 preparedStmt.setInt(2, productIntegerEntry.getKey().getId());
                 preparedStmt.executeUpdate();
+
+                updateQuantityOfProductInProducts(productIntegerEntry.getKey(), productIntegerEntry.getKey().getQuantity() - productIntegerEntry.getValue());
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        refreshProducts();
     }
 
-    public static Product getProductAtIndex(int index) {
-        int i = -1;
-        for (Product product : products) {
-            i++;
-            if (i == index) {
-                return product;
-            }
-        }
-        return null;
+    private static void updateQuantityOfProductInProducts(Product product, Integer quantity) {
+        Objects.requireNonNull(findProduct(product.getId())).setQuantity(quantity);
     }
 
     public static void removeProductFromDB(Product product) {
@@ -100,11 +95,12 @@ public class Products {
             PreparedStatement preparedStmt = connection.prepareStatement(query);
             preparedStmt.setInt(1, product.getId());
             preparedStmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        refreshProducts();
+        products.remove(product);
     }
 
     public static void addProductToDB(Product product) {
@@ -119,11 +115,10 @@ public class Products {
             preparedStatement.setInt(4, product.getQuantity());
 
             preparedStatement.executeUpdate();
+            products.add(product);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        refreshProducts();
     }
 
     public static void modifyProductInDB(Product product) {
@@ -137,16 +132,26 @@ public class Products {
             preparedStatement.setInt(4, product.getId());
 
             preparedStatement.executeUpdate();
+
+            Product updatedProduct = findProduct(product.getId());
+
+            if (updatedProduct != null) {
+                updatedProduct.setName(product.getName());
+                updatedProduct.setPrice(product.getPrice());
+                updatedProduct.setQuantity(product.getQuantity());
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        refreshProducts();
     }
 
-    private static void refreshProducts() { /*There may be updates to DB so we refresh the products by clearing them all
-                                            from ArrayList and read again from DB.*/
-        products.clear();
-        fetchProductsFromDatabase();
+    private static Product findProduct(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
     }
 }

@@ -79,7 +79,7 @@ public class AdminController {
                 JOptionPane.showMessageDialog(view.getJPanel(), "Please select a product!");
             } else {    /*else, if there is a product selected, we remove the product from ArrayList and from DB
                           and refresh the panel with products table from the DB*/
-                Products.removeProductFromDB(Objects.requireNonNull(Products.getProductAtIndex(Utils.productSelected)));
+                Products.removeProductFromDB(Objects.requireNonNull(Products.getProductAt(Utils.productSelected)));
                 view.refreshDataFromTable();
                 JOptionPane.showMessageDialog(view.getJPanel(), "The product has been removed!");
                 Utils.productSelected = -1;
@@ -97,7 +97,7 @@ public class AdminController {
             } else {    /*else, if there is a product selected, we modify the product in ArrayList and in DB
                           and refresh the panel with products table from the DB*/
                 /*the id of the selected product, to know what to modify in DB*/
-                int selectedID = Objects.requireNonNull(Products.getProductAtIndex(Utils.productSelected)).getId();
+                int selectedID = Objects.requireNonNull(Products.getProductAt(Utils.productSelected)).getId();
 
                 JTextField productName = new JTextField();
                 JTextField productPrice = new JTextField();

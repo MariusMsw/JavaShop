@@ -24,6 +24,7 @@ public class ShoppingCartController {
 
     public ShoppingCartController(ShoppingCartGUI shoppingCartGUI, ProductsController productsController) {
 
+        Utils.productSelected = -1;
         this.shoppingCart = Utils.loggedUser.getShoppingCart(); //get the logged user shopping cart
         this.view = shoppingCartGUI;
         this.productsController = productsController;
@@ -42,6 +43,7 @@ public class ShoppingCartController {
              * in a table in top panel*/
             ProductsJTable.setProductsForJTable(view.getTable(), ProductsController.convertProductsToData(Products.getAllProducts()),
                     "Name", "Price", "Stock");
+            Utils.productSelected = -1;
             productsController.setUserGUItoView();  /* with this line, we set the bottom panel back to UserGUI when back
                                                         button is pressed from show cart interface*/
         }

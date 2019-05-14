@@ -37,9 +37,11 @@ public class ShoppingCartGUI {
         bottomPanel.add(removeButton);
         bottomPanel.add(backButton);
 
-        JSplitPane splitPane = ProductsJTable.getSplitPane();   /* the split pane that contains top + bottom panel
-                                                                    and set the proper components in it:
-                                                                    table with products on top and buttons on bottom*/
+        /* the split pane that contains top + bottom panel
+        and set the proper components in it:
+        table with products on top and buttons on bottom*/
+
+        JSplitPane splitPane = ProductsJTable.getSplitPane();
         splitPane.setBottomComponent(bottomPanel);
         splitPane.setTopComponent(userProductsPanel);
         splitPane.setDividerLocation(((int) screenSize.getHeight() / 2) * 80 / 100);
