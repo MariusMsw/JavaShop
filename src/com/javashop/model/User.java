@@ -9,10 +9,12 @@ public class User {
     private String username;
     private String password;
     private Map<Product, Integer> shoppingCart = new HashMap<>();
+    private Integer money;
 
-    User(String username, String password) {
+    public User(String username, String password, Integer money) {
         this.username = username;
         this.password = password;
+        this.money = money;
     }
 
     String getUsername() {
@@ -83,5 +85,21 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Integer getMoney() {
+        return money;
+    }
+
+    public void setMoney(Integer money) {
+        this.money = money;
     }
 }

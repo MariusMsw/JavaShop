@@ -48,8 +48,9 @@ public class Users {
         while (resultSet.next()) {
             String userName = resultSet.getString("username");
             String userPassword = resultSet.getString("password");
+            Integer userMoney = Integer.parseInt(resultSet.getString("money"));
 
-            users.add(new User(userName, userPassword));
+            users.add(new User(userName, userPassword, userMoney));
         }
     }
 
@@ -75,18 +76,19 @@ public class Users {
         return null;
     }
 
-    public static void addUser(String username, String password) {
+    public static void addUser(String username, String password, Integer money) {
         /*when register button is used and we create a new account, save it in DB by using prepared statements
          * also, save that user in users ArrayList*/
-        User user = new User(username, password);
+        User user = new User(username, password, money);
         users.add(user);
 
         PreparedStatement statement;
 
         try {
-            statement = connection.prepareStatement("insert into users(username,password) VALUES(?,?)");
+            statement = connection.prepareStatement("insert into users(username,password, money) VALUES(?,?,?)");
             statement.setString(1, username);
             statement.setString(2, password);
+            statement.setInt(3, money);
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();

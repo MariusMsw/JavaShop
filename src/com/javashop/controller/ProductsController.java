@@ -5,6 +5,7 @@ import com.javashop.model.*;
 import com.javashop.views.AdminGUI;
 import com.javashop.views.ProductsJTable;
 import com.javashop.views.UserGUI;
+import jdk.jshell.execution.Util;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -120,6 +121,7 @@ public class ProductsController {
                     } else {
                         view.setContent(userGUI.getJPanel());
                         Utils.loggedUser = users.getUser(username.getText().trim(), String.valueOf(password.getPassword()).trim());
+                        userGUI.setMoneyTextField(Utils.loggedUser.getMoney());
                     }
                 } else {    //else, if there is no record of this account, alert the user
                     JOptionPane.showMessageDialog(view.getMainFrame(), "Can't connect!\n" +
@@ -136,12 +138,15 @@ public class ProductsController {
             /* here we create the confirm dialog with user */
             JTextField username = new JTextField();
             JPasswordField password = new JPasswordField();
+            JTextField money = new JTextField();
 
             final JComponent[] inputs = new JComponent[]{
                     new JLabel("Username"),
                     username,
                     new JLabel("Password"),
-                    password
+                    password,
+                    new JLabel("Money"),
+                    money
             };
 
             int result = JOptionPane.showConfirmDialog(view.getMainFrame(),
@@ -157,7 +162,7 @@ public class ProductsController {
                     /* If there if no matching user already, create the new account and notify the user
                      * that the account has been created*/
                     JOptionPane.showMessageDialog(view.getMainFrame(), "Successful register!");
-                    Users.addUser(username.getText().trim(), String.valueOf(password.getPassword()).trim());
+                    Users.addUser(username.getText().trim(), String.valueOf(password.getPassword()).trim(),Integer.parseInt(money.getText().trim()));
                 }
             }
         }

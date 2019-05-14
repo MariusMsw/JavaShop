@@ -13,17 +13,20 @@ public class UserGUI {
     private JButton showShoppingCartButton = new JButton("Show cart");
     private JButton checkoutButton = new JButton("Checkout");
     private JButton logoutButton = new JButton("Logout");
+    private JTextField moneyTextField = new JTextField("Money: ");
 
     public UserGUI() {
         userPanel = new JPanel();
-        userPanel.setLayout(new GridLayout(1, 4));
+        userPanel.setLayout(new GridLayout(1, 5));
 
         userPanel.add(addToShoppingCartButton);
         userPanel.add(showShoppingCartButton);
         userPanel.add(checkoutButton);
         userPanel.add(logoutButton);
+        userPanel.add(moneyTextField);
 
         Utils.productSelected = -1;
+        moneyTextField.setEditable(false);
     }
 
     public JPanel getJPanel() {
@@ -44,5 +47,9 @@ public class UserGUI {
 
     public void setLogoutButtonListener(ActionListener listener) {
         this.logoutButton.addActionListener(listener);
+    }
+
+    public void setMoneyTextField(Integer integer) {
+        moneyTextField.setText("Money: " + integer);
     }
 }
