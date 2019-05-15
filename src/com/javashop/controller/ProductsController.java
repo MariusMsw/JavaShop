@@ -155,14 +155,26 @@ public class ProductsController {
             );
             /* if user presses YES, it means that he wants to create an account*/
             if (result == JOptionPane.YES_OPTION) {
-                /* so, we check if the account (username + password) already exists in DB*/
-                if (users.findUser(username.getText().trim(), String.valueOf(password.getPassword()).trim())) {
-                    JOptionPane.showMessageDialog(view.getMainFrame(), "User already exists!");
-                } else {
-                    /* If there if no matching user already, create the new account and notify the user
-                     * that the account has been created*/
-                    JOptionPane.showMessageDialog(view.getMainFrame(), "Successful register!");
-                    Users.addUser(username.getText().trim(), String.valueOf(password.getPassword()).trim(),Integer.parseInt(money.getText().trim()));
+                try {
+                    int moneyAsInt = Integer.parseInt(money.getText().trim());
+                    String passwordAsString = String.valueOf(password.getPassword()).trim();
+                    String usernameAsString = username.getText().trim();
+
+                    /* so, we check if the account (username + password) already exists in DB*/
+                    if (users.findUser(usernameAsString, passwordAsString)) {
+                        JOptionPane.showMessageDialog(view.getMainFrame(), "User already exists!");
+                    } else if (moneyAsInt >= 0 && !passwordAsString.equals("") && !usernameAsString.equals("")) {
+
+                        /* If there if no matching user already, create the new account and notify the user
+                         * that the account has been created*/
+                        JOptionPane.showMessageDialog(view.getMainFrame(), "Successful register!");
+                        Users.addUser(usernameAsString, passwordAsString, moneyAsInt);
+
+                    } else {
+                        JOptionPane.showMessageDialog(view.getMainFrame(), "Can't register!");
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(view.getMainFrame(), "Can't register!");
                 }
             }
         }

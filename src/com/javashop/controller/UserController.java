@@ -113,9 +113,7 @@ public class UserController {
                 refreshProductsInTable();
 
             } else {
-
                 JOptionPane.showMessageDialog(view.getJPanel(), "Insufficient money!");
-
 
             }
         }

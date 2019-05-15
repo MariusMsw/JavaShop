@@ -1,5 +1,6 @@
 package com.javashop.controller;
 
+import com.javashop.InputValidation;
 import com.javashop.Utils;
 import com.javashop.model.Product;
 import com.javashop.model.Products;
@@ -60,20 +61,27 @@ public class AdminController {
             if (result == JOptionPane.YES_OPTION) {
 
                 /*and so, we get the fields inserted and cast them to the specific type*/
-                int id = Integer.parseInt(productID.getText());
-                String name = productName.getText();
-                double price = Double.parseDouble(productPrice.getText());
-                int quantity = Integer.parseInt(productQuantity.getText());
+                try {
+                    int id = Integer.parseInt(productID.getText());
+                    String name = productName.getText();
+                    double price = Double.parseDouble(productPrice.getText());
+                    int quantity = Integer.parseInt(productQuantity.getText());
 
-                /* create a new product with those fields, add it to the DB and refresh the table to show the product instantly in table*/
-                Product product = new Product(id, name, price, quantity);
-                Products.addProductToDB(product);
+                    if (InputValidation.isProductIDValid(id) && price >= 0 && quantity >= 0) {
+                        /* create a new product with those fields, add it to the DB and refresh the table to show the product instantly in table*/
+                        Product product = new Product(id, name, price, quantity);
+                        Products.addProductToDB(product);
 
-                view.refreshDataFromTable();
-                view.updateCapitalTextField(products.calculateCapital());
+                        view.refreshDataFromTable();
+                        view.updateCapitalTextField(products.calculateCapital());
 
-                JOptionPane.showMessageDialog(view.getJPanel(), "Product added with success!");
-
+                        JOptionPane.showMessageDialog(view.getJPanel(), "Product added with success!");
+                    } else {
+                        JOptionPane.showMessageDialog(view.getJPanel(), "Can't add this product!");
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(view.getJPanel(), "Write normal values!");
+                }
             }
         }
     }
@@ -144,21 +152,29 @@ public class AdminController {
                 /*if Yes button is clicked, it means that the product should be modified in the DB*/
                 if (result == JOptionPane.YES_OPTION) {
                     /*and so, we get the fields inserted and cast them to the specific type*/
+                    try {
+                        String name = productName.getText();
+                        double price = Double.parseDouble(productPrice.getText());
+                        int quantity = Integer.parseInt(productQuantity.getText());
 
-                    String name = productName.getText();
-                    double price = Double.parseDouble(productPrice.getText());
-                    int quantity = Integer.parseInt(productQuantity.getText());
+                        if (!name.equals("") && price >= 0 && quantity >= 0) {
 
-                    /* create a new product with those fields, modify it in the DB and refresh the table to show the product instantly in table*/
-                    Product product = new Product(selectedID, name, price, quantity);
-                    Products.modifyProductInDB(product);
+                            /* create a new product with those fields, modify it in the DB and refresh the table to show the product instantly in table*/
+                            Product product = new Product(selectedID, name, price, quantity);
+                            Products.modifyProductInDB(product);
 
-                    view.refreshDataFromTable();
-                    view.updateCapitalTextField(products.calculateCapital());
+                            view.refreshDataFromTable();
+                            view.updateCapitalTextField(products.calculateCapital());
 
-                    JOptionPane.showMessageDialog(view.getJPanel(), "Product modified with success!");
+                            JOptionPane.showMessageDialog(view.getJPanel(), "Product modified with success!");
 
-                    Utils.productSelected = -1;
+                            Utils.productSelected = -1;
+                        } else {
+                            JOptionPane.showMessageDialog(view.getJPanel(), "Can't modify this product!");
+                        }
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(view.getJPanel(), "Write normal values!");
+                    }
                 }
             }
         }
