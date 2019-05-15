@@ -40,7 +40,7 @@ public class UserController {
 
     private void refreshProductsInTable() {
         /* if there are products in table, we read again the products from shopping cart (HashMap) and show them in interface*/
-        if (shoppingCartGUI.getTable() != null) {
+        if (shoppingCartGUI != null && shoppingCartGUI.getTable() != null) {
             ProductsJTable.setProductsForJTable(shoppingCartGUI.getTable(), ProductsController.convertProductsToData(Products.getAllProducts()),
                     "Name", "Price", "Stock");
         } else {
@@ -50,16 +50,20 @@ public class UserController {
     }
 
     class AddToCartButton implements ActionListener {
+
         /* when we press Add Product button, we use the productSelected that holds the row of
          * the product in DB and, if it is -1, it means that no product has been selected*/
+
         @Override
         public void actionPerformed(ActionEvent e) {
 
             if (Utils.productSelected == -1) {
                 JOptionPane.showMessageDialog(view.getJPanel(), "Please select a product!");
-            } else {/* but, if it is different from -1, it means that a product has been selected,
-                        so we add the product from that row in shopping cart( HashMap)*/
-                users.addProductToShoppingCart(products.getProductAt(Utils.productSelected), Utils.loggedUser);
+            } else {
+                /* but, if it is different from -1, it means that a product has been selected,
+                so we add the product from that row in shopping cart( HashMap)*/
+
+                users.addProductToShoppingCart(Products.getProductAt(Utils.productSelected), Utils.loggedUser);
                 JOptionPane.showMessageDialog(view.getJPanel(), "The product has been added!");
             }
         }
@@ -83,15 +87,36 @@ public class UserController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if (Utils.loggedUser.isShoppingCartEmpty()) {/*if so, alert the user and do nothing*/
+            if (Utils.loggedUser.isShoppingCartEmpty()) {
+
+                /*if so, alert the user and do nothing*/
                 JOptionPane.showMessageDialog(view.getJPanel(), "The shopping cart is empty!");
-            } else  {/*else, if there are products in shopping cart(HashMap),
-                      we remove the products one by one in DB, alert the user that everything is ok*/
+
+            } else if (Utils.loggedUser.getMoney() >= Utils.loggedUser.calculateSumToPay()) {
+
+                /*else, if there are products in shopping cart(HashMap),
+                we remove the products one by one in DB, alert the user that everything is ok*/
+
                 Products.removeProductsFromDB(Utils.loggedUser.getShoppingCart());
                 JOptionPane.showMessageDialog(view.getJPanel(), "Checkout successful!");
-                Utils.loggedUser.emptyShoppingCart();   /*clear all the products in shopping cart(in HashMap)*/
-                refreshProductsInTable();   /* and refresh the table (read again the products from DB and display them
-                                                in UserGUI*/
+
+                /*clear all the products in shopping cart(in HashMap)*/
+                Utils.loggedUser.setMoney(Utils.loggedUser.getMoney() - Utils.loggedUser.calculateSumToPay());
+                users.updateUserMoneyInDB(Utils.loggedUser);
+                Utils.loggedUser.emptyShoppingCart();
+
+
+                view.setMoneyTextField(Utils.loggedUser.getMoney());
+
+                /* and refresh the table (read again the products
+                from DB and display them in UserGUI*/
+                refreshProductsInTable();
+
+            } else {
+
+                JOptionPane.showMessageDialog(view.getJPanel(), "Insufficient money!");
+
+
             }
         }
     }

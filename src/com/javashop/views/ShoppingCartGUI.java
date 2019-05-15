@@ -13,30 +13,34 @@ import java.util.Map;
 
 public class ShoppingCartGUI {
 
-    private JTable table = new JTable(); /* the table with the shopping cart products*/
+    /* the table with the shopping cart products*/
     /* the two buttons from she shopping cart interface: back and remove product*/
+    private JTable table = new JTable();
+
     private JButton backButton = new JButton("Back");
     private JButton removeButton = new JButton("Remove Product");
     private JTextField totalSum = new JTextField();
 
     public ShoppingCartGUI(User user) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); /* get the user screen size
-                                                                                to properly display the application interface*/
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        Map<Product, Integer> userProducts = user.getShoppingCart();    /* get the user products to show them in the top panel
-                                                                            (the one with the products table)*/
-
+        Map<Product, Integer> userProducts = user.getShoppingCart();
         table.setBounds(30, 40, 200, 300);
+
         /* convert the shopping cart products (the HashMap) to matrix with each product fields:
          *name of product, price and quantity to show that product in table properly*/
         String[][] data = ProductsController.convertProductsToData(userProducts);
+
         /* change the Stock column to Quantity because we are in shopping cart GUI*/
         ProductsJTable.setProductsForJTable(table, data, "Name", "Price", "Quantity");
-        JScrollPane userProductsPanel = new JScrollPane(table); /* the panel with the products (the table)*/
+        JScrollPane userProductsPanel = new JScrollPane(table);
 
         totalSum.setText("Total sum: " + Utils.loggedUser.calculateSumToPay());
         totalSum.setEditable(false);
-        JPanel bottomPanel = new JPanel();  /* the panel with the buttons from shopping cart GUI (back + remove product buttons)*/
+        totalSum.setHorizontalAlignment(SwingConstants.CENTER);
+
+        /* the panel with the buttons from shopping cart GUI (back + remove product buttons)*/
+        JPanel bottomPanel = new JPanel();
         bottomPanel.add(removeButton);
         bottomPanel.add(backButton);
         bottomPanel.add(totalSum);
@@ -73,5 +77,9 @@ public class ShoppingCartGUI {
         Map<Product, Integer> userProducts = Utils.loggedUser.getShoppingCart();
         String[][] data = ProductsController.convertProductsToData(userProducts);
         ProductsJTable.setProductsForJTable(table, data, "Name", "Price", "Quantity");
+    }
+
+    public void updateSum(){
+        totalSum.setText("Total sum: " + Utils.loggedUser.calculateSumToPay());
     }
 }

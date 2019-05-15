@@ -17,6 +17,17 @@ public class User {
         this.money = money;
     }
 
+    public User(int id, String username, String password, Integer money) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.money = money;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     String getUsername() {
         return username;
     }

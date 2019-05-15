@@ -26,6 +26,7 @@ public class UserGUI {
         userPanel.add(moneyTextField);
 
         Utils.productSelected = -1;
+        moneyTextField.setHorizontalAlignment(SwingConstants.CENTER);
         moneyTextField.setEditable(false);
     }
 

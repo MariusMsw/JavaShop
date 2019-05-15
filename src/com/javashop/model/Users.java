@@ -1,5 +1,7 @@
 package com.javashop.model;
 
+import com.javashop.Utils;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -46,11 +48,12 @@ public class Users {
         ResultSet resultSet = statement.executeQuery("select * from users");
 
         while (resultSet.next()) {
+            Integer id = resultSet.getInt("id");
             String userName = resultSet.getString("username");
             String userPassword = resultSet.getString("password");
             Integer userMoney = Integer.parseInt(resultSet.getString("money"));
 
-            users.add(new User(userName, userPassword, userMoney));
+            users.add(new User(id,userName, userPassword, userMoney));
         }
     }
 
@@ -99,4 +102,23 @@ public class Users {
         /* add a specific product in a shopping cart from a specific user (mostly, logged user)*/
         user.addToShoppingCart(product);
     }
+
+    public void updateUserMoneyInDB(User updatedUser){
+
+        PreparedStatement preparedStatement;
+
+        try {
+
+            preparedStatement = connection.prepareStatement(" update users set money = ? where id = ?");
+            preparedStatement.setInt(1,updatedUser.getMoney());
+            preparedStatement.setInt(2, updatedUser.getId());
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
