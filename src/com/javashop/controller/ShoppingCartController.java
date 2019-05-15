@@ -71,6 +71,7 @@ public class ShoppingCartController {
                           and refresh the panel with products table from the shopping cart*/
                 Utils.loggedUser.removeFromShoppingCart(Utils.loggedUser.getProductAtIndex(Utils.productSelected));
                 view.refreshDataFromTable();
+
                 JOptionPane.showMessageDialog(view.getTable(), "The product has been removed!");
             }
         }

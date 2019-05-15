@@ -17,6 +17,7 @@ public class ShoppingCartGUI {
     /* the two buttons from she shopping cart interface: back and remove product*/
     private JButton backButton = new JButton("Back");
     private JButton removeButton = new JButton("Remove Product");
+    private JTextField totalSum = new JTextField();
 
     public ShoppingCartGUI(User user) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); /* get the user screen size
@@ -33,9 +34,12 @@ public class ShoppingCartGUI {
         ProductsJTable.setProductsForJTable(table, data, "Name", "Price", "Quantity");
         JScrollPane userProductsPanel = new JScrollPane(table); /* the panel with the products (the table)*/
 
+        totalSum.setText("Total sum: " + Utils.loggedUser.calculateSumToPay());
+        totalSum.setEditable(false);
         JPanel bottomPanel = new JPanel();  /* the panel with the buttons from shopping cart GUI (back + remove product buttons)*/
         bottomPanel.add(removeButton);
         bottomPanel.add(backButton);
+        bottomPanel.add(totalSum);
 
         /* the split pane that contains top + bottom panel
         and set the proper components in it:

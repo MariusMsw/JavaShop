@@ -102,4 +102,17 @@ public class User {
     public void setMoney(Integer money) {
         this.money = money;
     }
+
+    public Integer calculateSumToPay() {
+
+        if (isShoppingCartEmpty()) {
+            return 0;
+        }
+        int sum = 0;
+        for (Map.Entry<Product, Integer> product : shoppingCart.entrySet()) {
+            sum += product.getKey().getPrice() * product.getValue();
+        }
+
+        return sum;
+    }
 }

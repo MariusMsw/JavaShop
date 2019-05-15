@@ -85,7 +85,7 @@ public class UserController {
 
             if (Utils.loggedUser.isShoppingCartEmpty()) {/*if so, alert the user and do nothing*/
                 JOptionPane.showMessageDialog(view.getJPanel(), "The shopping cart is empty!");
-            } else {/*else, if there are products in shopping cart(HashMap),
+            } else  {/*else, if there are products in shopping cart(HashMap),
                       we remove the products one by one in DB, alert the user that everything is ok*/
                 Products.removeProductsFromDB(Utils.loggedUser.getShoppingCart());
                 JOptionPane.showMessageDialog(view.getJPanel(), "Checkout successful!");
