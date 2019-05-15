@@ -38,6 +38,7 @@ public class ShoppingCartGUI {
         totalSum.setText("Total sum: " + Utils.loggedUser.calculateSumToPay());
         totalSum.setEditable(false);
         totalSum.setHorizontalAlignment(SwingConstants.CENTER);
+        totalSum.setFont(totalSum.getFont().deriveFont(Font.BOLD));
 
         /* the panel with the buttons from shopping cart GUI (back + remove product buttons)*/
         JPanel bottomPanel = new JPanel();

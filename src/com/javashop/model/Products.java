@@ -146,6 +146,17 @@ public class Products {
         }
     }
 
+    public Integer calculateCapital(){
+
+        int capital = 0;
+
+        for(Product product : products){
+            capital += product.getPrice() * product.getQuantity();
+        }
+
+        return capital;
+    }
+
     private static Product findProduct(int id) {
         for (Product product : products) {
             if (product.getId() == id) {
@@ -154,4 +165,6 @@ public class Products {
         }
         return null;
     }
+
+
 }

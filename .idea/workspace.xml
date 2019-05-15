@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cd14751-179e-49ed-9542-3d77c6bb9f9c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/javashop/controller/ShoppingCartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/controller/ShoppingCartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/javashop/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/javashop/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/javashop/model/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/model/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/javashop/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/javashop/model/Products.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/model/Products.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/javashop/views/AdminGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/views/AdminGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/javashop/views/ShoppingCartGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/views/ShoppingCartGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/javashop/views/UserGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/views/UserGUI.java" afterDir="false" />
     </list>
@@ -33,11 +32,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/javashop/views/ProductsJTable.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/javashop/controller/AdminController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="1814">
+              <caret line="175" lean-forward="true" selection-start-line="175" selection-end-line="175" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -45,17 +47,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/javashop/views/UserGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="53" column="46" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
+            <state relative-caret-position="416">
+              <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/javashop/controller/ProductsController.java">
+        <entry file="file://$PROJECT_DIR$/src/com/javashop/views/AdminGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="110" column="16" selection-start-line="110" selection-start-column="16" selection-end-line="110" selection-end-column="16" />
+            <state relative-caret-position="347">
+              <caret line="34" column="71" lean-forward="true" selection-start-line="34" selection-start-column="71" selection-end-line="35" selection-end-column="83" />
+              <folding>
+                <element signature="e#2285#2286#0" expanded="true" />
+                <element signature="e#2317#2318#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -87,8 +93,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/javashop/model/Products.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="135" column="28" lean-forward="true" selection-start-line="135" selection-start-column="28" selection-end-line="135" selection-end-column="28" />
+            <state relative-caret-position="571">
+              <caret line="148" column="10" selection-start-line="148" selection-start-column="10" selection-end-line="148" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,7 +102,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/javashop/model/User.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-520">
@@ -113,26 +119,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/javashop/views/ShoppingCartGUI.java">
+        <entry file="file://$PROJECT_DIR$/src/com/javashop/StringValues.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="39" column="61" selection-start-line="39" selection-start-column="61" selection-end-line="39" selection-end-column="61" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3553#3554#0" expanded="true" />
-                <element signature="e#3587#3588#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="64">
+              <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/javashop/controller/ShoppingCartController.java">
+        <entry file="file://$PROJECT_DIR$/src/com/javashop/views/ShoppingCartGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="87" column="32" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="32" />
+            <state relative-caret-position="342">
+              <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3553#3554#0" expanded="true" />
+                <element signature="e#3587#3588#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -160,18 +163,19 @@
         <option value="$PROJECT_DIR$/src/com/javashop/data/Users.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/Main.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/views/ProductsJTable.java" />
-        <option value="$PROJECT_DIR$/src/com/javashop/views/AdminGUI.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/model/Product.java" />
-        <option value="$PROJECT_DIR$/src/com/javashop/controller/AdminController.java" />
-        <option value="$PROJECT_DIR$/src/com/javashop/model/Products.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/Utils.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/controller/ProductsController.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/controller/ShoppingCartController.java" />
-        <option value="$PROJECT_DIR$/src/com/javashop/views/UserGUI.java" />
-        <option value="$PROJECT_DIR$/src/com/javashop/views/ShoppingCartGUI.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/model/Users.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/model/User.java" />
+        <option value="$PROJECT_DIR$/src/com/javashop/StringValues.java" />
+        <option value="$PROJECT_DIR$/src/com/javashop/model/Products.java" />
+        <option value="$PROJECT_DIR$/src/com/javashop/views/AdminGUI.java" />
+        <option value="$PROJECT_DIR$/src/com/javashop/views/ShoppingCartGUI.java" />
+        <option value="$PROJECT_DIR$/src/com/javashop/views/UserGUI.java" />
+        <option value="$PROJECT_DIR$/src/com/javashop/controller/AdminController.java" />
       </list>
     </option>
   </component>
@@ -320,7 +324,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24786781" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24786781" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -330,13 +334,13 @@
       <window_info id="Learn" order="7" weight="0.32995737" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49546143" visible="true" weight="0.26435536" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4946695" visible="true" weight="0.26435536" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.17839608" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5045386" side_tool="true" weight="0.28150573" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5053305" side_tool="true" weight="0.26435536" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49924356" weight="0.03900325" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -418,23 +422,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/javashop/views/AdminGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="18" column="72" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/javashop/controller/AdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1264">
-          <caret line="89" column="11" selection-start-line="89" selection-start-column="11" selection-end-line="89" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/javashop/controller/ProductsController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
@@ -456,35 +443,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/javashop/views/ShoppingCartGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="39" column="61" selection-start-line="39" selection-start-column="61" selection-end-line="39" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3553#3554#0" expanded="true" />
-            <element signature="e#3587#3588#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/javashop/views/UserGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="53" column="46" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/javashop/model/Products.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="135" column="28" lean-forward="true" selection-start-line="135" selection-start-column="28" selection-end-line="135" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -528,6 +486,63 @@
             <element signature="e#489#490#0" expanded="true" />
             <element signature="e#2978#2979#0" expanded="true" />
             <element signature="e#3012#3013#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/javashop/StringValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/javashop/model/Products.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="148" column="10" selection-start-line="148" selection-start-column="10" selection-end-line="148" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/javashop/views/ShoppingCartGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3553#3554#0" expanded="true" />
+            <element signature="e#3587#3588#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/javashop/views/UserGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/javashop/views/AdminGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="34" column="71" lean-forward="true" selection-start-line="34" selection-start-column="71" selection-end-line="35" selection-end-column="83" />
+          <folding>
+            <element signature="e#2285#2286#0" expanded="true" />
+            <element signature="e#2317#2318#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/javashop/controller/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1814">
+          <caret line="175" lean-forward="true" selection-start-line="175" selection-end-line="175" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

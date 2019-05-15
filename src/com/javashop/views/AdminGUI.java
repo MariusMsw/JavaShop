@@ -1,5 +1,6 @@
 package com.javashop.views;
 
+import com.javashop.StringValues;
 import com.javashop.Utils;
 import com.javashop.controller.ProductsController;
 import com.javashop.model.Product;
@@ -18,15 +19,21 @@ public class AdminGUI {
     private JButton removeProductFromDataBaseButton = new JButton("Remove product");
     private JButton modifyProductButton = new JButton("Modify product");
     private JButton logoutButton = new JButton("Logout");
+    private JTextField capitalTextField = new JTextField(StringValues.PRODUCTS_VALUE);
 
     public AdminGUI() {
 
         adminPanel = new JPanel();
-        adminPanel.setLayout(new GridLayout(1, 4));
+        adminPanel.setLayout(new GridLayout(1, 5));
         adminPanel.add(addProductInDataBaseButton);
         adminPanel.add(removeProductFromDataBaseButton);
         adminPanel.add(modifyProductButton);
         adminPanel.add(logoutButton);
+        adminPanel.add(capitalTextField);
+
+        capitalTextField.setEditable(false);
+        capitalTextField.setHorizontalAlignment(SwingConstants.CENTER);
+        capitalTextField.setFont(capitalTextField.getFont().deriveFont(Font.BOLD));
 
         Utils.productSelected = -1;
     }
@@ -56,5 +63,9 @@ public class AdminGUI {
         ArrayList<Product> theProducts = Products.getAllProducts();
         String[][] data = ProductsController.convertProductsToData(theProducts);
         ProductsJTable.setProductsForJTable(ProductsJTable.getTable(), data, "Name", "Price", "Stock");
+    }
+
+    public void updateCapitalTextField(Integer value){
+        capitalTextField.setText(StringValues.PRODUCTS_VALUE + value);
     }
 }

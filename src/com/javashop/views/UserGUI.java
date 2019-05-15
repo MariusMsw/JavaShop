@@ -28,6 +28,7 @@ public class UserGUI {
         Utils.productSelected = -1;
         moneyTextField.setHorizontalAlignment(SwingConstants.CENTER);
         moneyTextField.setEditable(false);
+        moneyTextField.setFont(moneyTextField.getFont().deriveFont(Font.BOLD));
     }
 
     public JPanel getJPanel() {
