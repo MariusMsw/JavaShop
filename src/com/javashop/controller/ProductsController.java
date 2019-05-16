@@ -104,9 +104,6 @@ public class ProductsController {
 
             if (result == JOptionPane.YES_OPTION) {
 
-                System.out.println("You entered " +
-                        username.getText() + ", " +
-                        String.valueOf(password.getPassword()));
                 /* when we log in with an account, search if there is that account in DB*/
                 if (users.findUser(username.getText().trim(), String.valueOf(password.getPassword()).trim())) {
 
@@ -160,7 +157,7 @@ public class ProductsController {
                     String usernameAsString = username.getText().trim();
 
                     /* so, we check if the account (username + password) already exists in DB*/
-                    if (users.findUser(usernameAsString, passwordAsString)) {
+                    if (users.findUser(usernameAsString)) {
                         JOptionPane.showMessageDialog(view.getMainFrame(), "User already exists!");
                     } else if (moneyAsInt >= 0 && !passwordAsString.equals("") && !usernameAsString.equals("")) {
 

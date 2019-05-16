@@ -79,9 +79,13 @@ public class Users {
         }
     }
 
-    public ArrayList<Transaction> getUserTransactions(User user) {
+    public ArrayList<Transaction> getUserTransactions(String username) {
+
+        User user = getUserByUsername(username);
+
         PreparedStatement preparedStatement;
         ArrayList<Transaction> transactions = null;
+
         try {
             transactions = new ArrayList<>();
             preparedStatement = connection.prepareStatement("select * from transactions where id = ?");
@@ -144,6 +148,17 @@ public class Users {
         return null;
     }
 
+
+    public boolean findUser(String username) {
+        /* here we check if a user with specified username exists in DB*/
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean findUser(String username, String password) {
         /* here we check if a user with specified username and password exists in DB*/
         for (User user : users) {
@@ -153,6 +168,16 @@ public class Users {
             }
         }
         return false;
+    }
+
+    public User getUserByUsername(String username){
+        for(User user : users){
+            if(user.getUsername().equals(username)){
+                return user;
+            }
+        }
+
+        return null;
     }
 
 }

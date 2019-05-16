@@ -55,4 +55,15 @@ public class Transaction {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", product='" + product + '\'' +
+                ", quantity=" + quantity +
+                ", date='" + date + '\'' +
+                ", userId=" + userId +
+                '}';
+    }
 }
