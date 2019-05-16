@@ -105,7 +105,6 @@ public class UserController {
                 users.updateUserMoneyInDB(Utils.loggedUser);
                 Utils.loggedUser.emptyShoppingCart();
 
-
                 view.setMoneyTextField(Utils.loggedUser.getMoney());
 
                 /* and refresh the table (read again the products

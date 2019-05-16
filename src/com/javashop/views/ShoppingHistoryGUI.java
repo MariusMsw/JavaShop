@@ -65,4 +65,8 @@ public class ShoppingHistoryGUI {
     public JList<Object> getUsersList() {
         return usersList;
     }
+
+    public JSplitPane getSplitPane() {
+        return splitPane;
+    }
 }

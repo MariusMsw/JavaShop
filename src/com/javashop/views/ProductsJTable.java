@@ -27,7 +27,7 @@ public class ProductsJTable {
          products table, login and register buttons*/
 
         mainFrame = new JFrame("Shop"); /* Create the main frame and set the dimensions for it*/
-        mainFrame.setSize((int) screenSize.getWidth() / 2,
+        mainFrame.setSize((int) screenSize.getWidth() * 2/3,
                 (int) screenSize.getHeight() / 2);
 
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

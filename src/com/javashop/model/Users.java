@@ -28,20 +28,6 @@ public class Users {
         }
     }
 
-    public static Users getInstance() {
-
-        if (instance == null) {
-
-            instance = new Users();
-            try {
-                fetchUsersFromDB();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return instance;
-    }
-
     private static void fetchUsersFromDB() throws SQLException {
         /* here, we connect to DB users table and get all the users and add them to the ArrayList*/
         Statement statement = connection.createStatement();
@@ -55,28 +41,6 @@ public class Users {
 
             users.add(new User(id, userName, userPassword, userMoney));
         }
-    }
-
-    public boolean findUser(String username, String password) {
-        /* here we check if a user with specified username and password exists in DB*/
-        for (User user : users) {
-            if (user.getUsername().equals(username) &&
-                    user.getPassword().equals(password)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public User getUser(String username, String password) {
-        /* we return the user with a specified username and password from DB but, if there is no instance of that user, we return null*/
-        for (User user : users) {
-            if (user.getUsername().equals(username) &&
-                    user.getPassword().equals(password)) {
-                return user;
-            }
-        }
-        return null;
     }
 
     public static void addUser(String username, String password, Integer money) {
@@ -98,11 +62,6 @@ public class Users {
         }
     }
 
-    public void addProductToShoppingCart(Product product, User user) {
-        /* add a specific product in a shopping cart from a specific user (mostly, logged user)*/
-        user.addToShoppingCart(product);
-    }
-
     public void updateUserMoneyInDB(User updatedUser) {
 
         PreparedStatement preparedStatement;
@@ -118,10 +77,82 @@ public class Users {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    public ArrayList<Transaction> getUserTransactions(User user) {
+        PreparedStatement preparedStatement;
+        ArrayList<Transaction> transactions = null;
+        try {
+            transactions = new ArrayList<>();
+            preparedStatement = connection.prepareStatement("select * from transactions where id = ?");
+            preparedStatement.setInt(2, user.getId());
+            preparedStatement.execute();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String product = resultSet.getString("product");
+                int quantity = resultSet.getInt("quantity");
+                String date = resultSet.getString("date");
+                int userId = resultSet.getInt("userId");
+
+                Transaction transaction = new Transaction(id, product, quantity, date, userId);
+                transactions.add(transaction);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return transactions;
     }
 
     public static ArrayList<User> getUsers() {
         return users;
     }
+
+
+    public static Users getInstance() {
+
+        if (instance == null) {
+
+            instance = new Users();
+            try {
+                fetchUsersFromDB();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return instance;
+    }
+
+    public void addProductToShoppingCart(Product product, User user) {
+        /* add a specific product in a shopping cart from a specific user (mostly, logged user)*/
+        user.addToShoppingCart(product);
+    }
+
+
+    public User getUser(String username, String password) {
+        /* we return the user with a specified username and password from DB but, if there is no instance of that user, we return null*/
+        for (User user : users) {
+            if (user.getUsername().equals(username) &&
+                    user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public boolean findUser(String username, String password) {
+        /* here we check if a user with specified username and password exists in DB*/
+        for (User user : users) {
+            if (user.getUsername().equals(username) &&
+                    user.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
