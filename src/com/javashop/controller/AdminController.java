@@ -1,11 +1,13 @@
 package com.javashop.controller;
 
 import com.javashop.InputValidation;
+import com.javashop.Main;
 import com.javashop.Utils;
 import com.javashop.model.Product;
 import com.javashop.model.Products;
 import com.javashop.views.AdminGUI;
 import com.javashop.views.ProductsJTable;
+import com.javashop.views.ShoppingHistoryGUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,6 +19,8 @@ public class AdminController {
     private Products products;
 
     private AdminGUI view;
+    private ShoppingHistoryGUI shoppingHistoryGUI;
+
     private ProductsJTable productsJTable;
 
     public AdminController(Products products, AdminGUI view, ProductsJTable productsJTable) {
@@ -30,6 +34,7 @@ public class AdminController {
         this.view.setRemoveProductFromDataBaseButtonListener(new RemoveProductFromDBButton());
         this.view.setModifyProductButtonListener(new ModifyProductInDB());
         this.view.setLogoutButtonListener(new LogoutButton());
+        this.view.setShowHistoryButtonListener(new TransactionsButton());
     }
 
     public class AddProductInDBButton implements ActionListener {
@@ -185,7 +190,16 @@ public class AdminController {
         @Override
         public void actionPerformed(ActionEvent e) {
             JOptionPane.showMessageDialog(view.getJPanel(), "Logout successful!");
-            productsJTable.setContent(productsJTable.getButtonsPanel());
+            productsJTable.setSplitPaneBottomComponent(productsJTable.getButtonsPanel());
+        }
+    }
+
+    public class TransactionsButton implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            shoppingHistoryGUI = new ShoppingHistoryGUI();
+            Main.setUpShoppingHistoryControllerAfterAdminHasLogged(shoppingHistoryGUI, productsJTable, view);
         }
     }
 }

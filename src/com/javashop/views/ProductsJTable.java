@@ -82,11 +82,18 @@ public class ProductsJTable {
         return mainFrame;
     }
 
-    public void setContent(JPanel panel) {
+    public void setSplitPaneBottomComponent(JPanel panel) {
         /* we set the bottom component to another panel because mostly the top component will be the panel with the products table*/
         splitPane.setBottomComponent(panel);
         splitPane.setDividerLocation(((int) screenSize.getHeight() / 2) * 80 / 100);
         mainFrame.repaint();    /* with this we refresh the main frame to show the update*/
+    }
+
+    public void setSplitPaneTopComponent(JComponent component) {
+
+        splitPane.setTopComponent(component);
+        splitPane.setDividerLocation(((int) screenSize.getHeight() / 2) * 80 / 100);
+        mainFrame.repaint();
     }
 
     public void setTableItemsListener(MouseAdapter adapter) {

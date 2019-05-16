@@ -5,7 +5,6 @@ import com.javashop.model.*;
 import com.javashop.views.AdminGUI;
 import com.javashop.views.ProductsJTable;
 import com.javashop.views.UserGUI;
-import jdk.jshell.execution.Util;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -117,9 +116,9 @@ public class ProductsController {
                     if ((username.getText().trim().equals("marius") && String.valueOf(password.getPassword()).trim().equals("1234")) ||
                             (username.getText().trim().equals("bogdan") && String.valueOf(password.getPassword()).trim().equals("1234"))) {
 
-                        view.setContent(adminGUI.getJPanel());
+                        view.setSplitPaneBottomComponent(adminGUI.getJPanel());
                     } else {
-                        view.setContent(userGUI.getJPanel());
+                        view.setSplitPaneBottomComponent(userGUI.getJPanel());
                         Utils.loggedUser = users.getUser(username.getText().trim(), String.valueOf(password.getPassword()).trim());
                         userGUI.setMoneyTextField(Utils.loggedUser.getMoney());
                     }
@@ -199,11 +198,11 @@ public class ProductsController {
 
     /* When back button is pressed, set back the UserGUI in bottom panel*/
     void setUserGUItoView() {
-        view.setContent(userGUI.getJPanel());
+        view.setSplitPaneBottomComponent(userGUI.getJPanel());
     }
 
     public void setAdminGUIToView() {
-        view.setContent(adminGUI.getJPanel());
+        view.setSplitPaneBottomComponent(adminGUI.getJPanel());
     }
 
     public ProductsJTable getView() {

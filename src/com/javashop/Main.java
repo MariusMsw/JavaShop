@@ -1,12 +1,11 @@
 package com.javashop;
 
-import com.javashop.controller.AdminController;
-import com.javashop.controller.ProductsController;
-import com.javashop.controller.ShoppingCartController;
-import com.javashop.controller.UserController;
+import com.javashop.controller.*;
 import com.javashop.model.Products;
 import com.javashop.model.Users;
+import com.javashop.views.AdminGUI;
 import com.javashop.views.ProductsJTable;
+import com.javashop.views.ShoppingHistoryGUI;
 
 public class Main {
 
@@ -14,12 +13,14 @@ public class Main {
     private static ShoppingCartController shoppingCartController;
     private static UserController userController;
     private static AdminController adminController;
+    private static ShoppingHistoryController shoppingHistoryController;
+    private static Users users;
 
     public static void main(String[] args) {
 
         Products products = Products.getInstance();
 
-        Users users = Users.getInstance();
+        users = Users.getInstance();
 
         ProductsJTable view = new ProductsJTable();
 
@@ -40,5 +41,11 @@ public class Main {
     public static void setUpControllerAfterUsedHasLogged() {
 
         shoppingCartController = new ShoppingCartController(userController.getShoppingCartGUI(), controller);
+    }
+
+    public static void setUpShoppingHistoryControllerAfterAdminHasLogged(ShoppingHistoryGUI view,
+                                                                         ProductsJTable productsJTable,
+                                                                         AdminGUI adminGUI) {
+        shoppingHistoryController = new ShoppingHistoryController(view, productsJTable, adminGUI);
     }
 }

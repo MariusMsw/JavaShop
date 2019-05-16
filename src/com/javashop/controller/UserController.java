@@ -29,7 +29,7 @@ public class UserController {
         this.productsJTable = productsJTable;
 
         this.view.setAddToShoppingCartButtonListener(new AddToCartButton());
-        this.view.setShowShoppingCartButtonListener(new ShowSoppingCartButton());
+        this.view.setShowShoppingCartButtonListener(new ShowShoppingCartButton());
         this.view.setCheckoutButtonListener(new CheckoutButton());
         this.view.setLogoutButtonListener(new LogoutButton());
     }
@@ -69,7 +69,7 @@ public class UserController {
         }
     }
 
-    class ShowSoppingCartButton implements ActionListener {
+    class ShowShoppingCartButton implements ActionListener {
         /* when we press show shopping cart button, we create a new interface for shopping cart for efficiency*/
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -126,7 +126,7 @@ public class UserController {
         @Override
         public void actionPerformed(ActionEvent e) {
             JOptionPane.showMessageDialog(view.getJPanel(), "Logout successful!");
-            productsJTable.setContent(productsJTable.getButtonsPanel());
+            productsJTable.setSplitPaneBottomComponent(productsJTable.getButtonsPanel());
         }
     }
 }
