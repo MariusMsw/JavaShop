@@ -24,6 +24,7 @@ public class ShoppingHistoryController {
         this.view = view;
         this.productsJTable = productsJTable;
         this.adminGUI = adminGUI;
+        this.users = Users.getInstance();
 
         this.view.setBackButtonListener(new BackButtonActionListener());
         this.view.setShowTransactionsButtonListener(new ShowTransactionsActionListener());
@@ -43,7 +44,7 @@ public class ShoppingHistoryController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if ( view.getUsersList().getSelectedValue() != null) {
+            if (view.getUsersList().getSelectedValue() != null) {
 
                 showUserTransactionFrame(view.getUsersList().getSelectedValue().toString());
 
@@ -53,12 +54,12 @@ public class ShoppingHistoryController {
         }
     }
 
-    private void showUserTransactionFrame(String username){
+    private void showUserTransactionFrame(String username) {
 
-        JFrame frame = new JFrame( username + "'s transactions");
+        JFrame frame = new JFrame(username + "'s transactions");
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setSize((int) screenSize.getWidth()  / 2,
+        frame.setSize((int) screenSize.getWidth() / 2,
                 (int) screenSize.getHeight() / 2);
 
         JPanel panel = new JPanel();
@@ -67,11 +68,11 @@ public class ShoppingHistoryController {
         ArrayList<Transaction> transactions = users.getUserTransactions(username);
         StringBuilder transaction = new StringBuilder();
 
-        for(Transaction object : transactions){
-            transaction.append(object.toString()).append(" \n");
+        for (Transaction object : transactions) {
+            transaction.append(object.toString()).append(System.lineSeparator());
         }
 
-        JTextField textField = new JTextField(transaction.toString());
+        JTextArea textArea = new JTextArea(transaction.toString());
         JButton cancelButton = new JButton("Cancel");
 
         cancelButton.addActionListener(new ActionListener() {
@@ -81,8 +82,8 @@ public class ShoppingHistoryController {
             }
         });
 
-        panel.add(textField,BorderLayout.CENTER);
-        panel.add(cancelButton,BorderLayout.SOUTH);
+        panel.add(textArea, BorderLayout.CENTER);
+        panel.add(cancelButton, BorderLayout.SOUTH);
 
         frame.add(panel);
         frame.setVisible(true);

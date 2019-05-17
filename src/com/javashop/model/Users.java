@@ -88,8 +88,8 @@ public class Users {
 
         try {
             transactions = new ArrayList<>();
-            preparedStatement = connection.prepareStatement("select * from transactions where id = ?");
-            preparedStatement.setInt(2, user.getId());
+            preparedStatement = connection.prepareStatement("select * from transactions where userId = ?");
+            preparedStatement.setInt(1, user.getId());
             preparedStatement.execute();
 
             ResultSet resultSet = preparedStatement.getResultSet();
@@ -102,6 +102,7 @@ public class Users {
                 int userId = resultSet.getInt("userId");
 
                 Transaction transaction = new Transaction(id, product, quantity, date, userId);
+
                 transactions.add(transaction);
             }
 
