@@ -16,6 +16,13 @@ public class Transaction {
         this.userId = userId;
     }
 
+    public Transaction(String product, int quantity, String date, int userId) {
+        this.product = product;
+        this.quantity = quantity;
+        this.date = date;
+        this.userId = userId;
+    }
+
     public int getId() {
         return id;
     }
@@ -58,12 +65,11 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction{" +
-                "id=" + id +
-                ", product='" + product + '\'' +
-                ", quantity=" + quantity +
-                ", date='" + date + '\'' +
-                ", userId=" + userId +
-                '}';
+        return "Transaction: " +
+                "id =" + id +
+                ", product ='" + product + '\'' +
+                ", quantity =" + quantity +
+                ", date ='" + date + '\'' +
+                ", userId =" + userId;
     }
 }

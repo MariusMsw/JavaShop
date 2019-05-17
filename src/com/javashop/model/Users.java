@@ -3,7 +3,11 @@ package com.javashop.model;
 import com.javashop.Utils;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Users {
 
@@ -113,6 +117,43 @@ public class Users {
         return transactions;
     }
 
+    public void updateTransactionInDB(Transaction transaction) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement("insert into transactions(product,quantity,userId,date) values (?,?,?,?)")) {
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            LocalDateTime localDate = LocalDateTime.now();
+
+            preparedStatement.setString(1, transaction.getProduct());
+            preparedStatement.setInt(2, transaction.getQuantity());
+            preparedStatement.setInt(3, transaction.getUserId());
+            preparedStatement.setString(4, dtf.format(localDate));
+            System.out.println(dtf.format(localDate));
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Transaction> saveTransactionOfUser(User user) {
+        ArrayList<Transaction> userTransactions = new ArrayList<>();
+
+        for (Map.Entry<Product, Integer> productIntegerEntry : user.getShoppingCart().entrySet()) {
+            String productName = productIntegerEntry.getKey().getName();
+            int quantity = productIntegerEntry.getValue();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            LocalDateTime localDate = LocalDateTime.now();
+            int userId = user.getId();
+            Transaction transaction = new Transaction(productName, quantity, dtf.format(localDate), userId);
+            userTransactions.add(transaction);
+        }
+
+        return userTransactions;
+
+    }
+
     public static ArrayList<User> getUsers() {
         return users;
     }
@@ -171,9 +212,9 @@ public class Users {
         return false;
     }
 
-    public User getUserByUsername(String username){
-        for(User user : users){
-            if(user.getUsername().equals(username)){
+    public User getUserByUsername(String username) {
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
                 return user;
             }
         }

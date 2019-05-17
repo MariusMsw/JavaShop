@@ -2,7 +2,9 @@ package com.javashop.controller;
 
 import com.javashop.Main;
 import com.javashop.Utils;
+import com.javashop.model.Product;
 import com.javashop.model.Products;
+import com.javashop.model.Transaction;
 import com.javashop.model.Users;
 import com.javashop.views.ProductsJTable;
 import com.javashop.views.ShoppingCartGUI;
@@ -11,6 +13,10 @@ import com.javashop.views.UserGUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class UserController {
 
@@ -100,6 +106,12 @@ public class UserController {
                 Products.removeProductsFromDB(Utils.loggedUser.getShoppingCart());
                 JOptionPane.showMessageDialog(view.getJPanel(), "Checkout successful!");
 
+                ArrayList<Transaction> userTransactions = users.saveTransactionOfUser(Utils.loggedUser);
+
+                for (Transaction transaction : userTransactions) {
+                    users.updateTransactionInDB(transaction);
+                }
+
                 /*clear all the products in shopping cart(in HashMap)*/
                 Utils.loggedUser.setMoney(Utils.loggedUser.getMoney() - Utils.loggedUser.calculateSumToPay());
                 users.updateUserMoneyInDB(Utils.loggedUser);
@@ -111,9 +123,9 @@ public class UserController {
                 from DB and display them in UserGUI*/
                 refreshProductsInTable();
 
+
             } else {
                 JOptionPane.showMessageDialog(view.getJPanel(), "Insufficient money!");
-
             }
         }
     }
