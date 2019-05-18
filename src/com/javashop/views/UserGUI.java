@@ -1,5 +1,6 @@
 package com.javashop.views;
 
+import com.javashop.StringValues;
 import com.javashop.Utils;
 
 import javax.swing.*;
@@ -9,15 +10,15 @@ import java.awt.event.ActionListener;
 public class UserGUI {
 
     private JPanel userPanel;
-    private JButton addToShoppingCartButton = new JButton("Add to cart");
-    private JButton showShoppingCartButton = new JButton("Show cart");
-    private JButton checkoutButton = new JButton("Checkout");
-    private JButton logoutButton = new JButton("Logout");
-    private JTextField moneyTextField = new JTextField("Money: ");
+    private JButton addToShoppingCartButton = new JButton(StringValues.BUTTON_ADD_TO_CART);
+    private JButton showShoppingCartButton = new JButton(StringValues.BUTTON_SHOW_CART);
+    private JButton checkoutButton = new JButton(StringValues.BUTTON_CHECKOUT);
+    private JButton logoutButton = new JButton(StringValues.BUTTON_LOGOUT);
+    private JTextField moneyTextField = new JTextField(StringValues.TEXT_MONEY);
 
     public UserGUI() {
         userPanel = new JPanel();
-        userPanel.setLayout(new GridLayout(1, 5));
+        userPanel.setLayout(new GridLayout(StringValues.USER_GUI_ROWS, StringValues.USER_GUI_COLUMNS));
 
         userPanel.add(addToShoppingCartButton);
         userPanel.add(showShoppingCartButton);
@@ -25,7 +26,7 @@ public class UserGUI {
         userPanel.add(logoutButton);
         userPanel.add(moneyTextField);
 
-        Utils.productSelected = -1;
+        Utils.productSelected = StringValues.NO_PRODUCT_SELECTED;
         moneyTextField.setHorizontalAlignment(SwingConstants.CENTER);
         moneyTextField.setEditable(false);
         moneyTextField.setFont(moneyTextField.getFont().deriveFont(Font.BOLD));
@@ -52,6 +53,6 @@ public class UserGUI {
     }
 
     public void setMoneyTextField(Integer integer) {
-        moneyTextField.setText("Money: " + integer);
+        moneyTextField.setText(StringValues.TEXT_MONEY+ integer);
     }
 }

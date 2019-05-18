@@ -1,6 +1,7 @@
 package com.javashop.controller;
 
 import com.javashop.Main;
+import com.javashop.StringValues;
 import com.javashop.Utils;
 import com.javashop.model.Product;
 import com.javashop.model.Products;
@@ -47,11 +48,16 @@ public class UserController {
     private void refreshProductsInTable() {
         /* if there are products in table, we read again the products from shopping cart (HashMap) and show them in interface*/
         if (shoppingCartGUI != null && shoppingCartGUI.getTable() != null) {
+
             ProductsJTable.setProductsForJTable(shoppingCartGUI.getTable(), ProductsController.convertProductsToData(Products.getAllProducts()),
-                    "Name", "Price", "Stock");
+                                                StringValues.COLUMN_NAME,
+                                                StringValues.COLUMN_PRICE,
+                                                StringValues.COLUMN_STOCK);
         } else {
             ProductsJTable.setProductsForJTable(productsJTable.getTable(), ProductsController.convertProductsToData(Products.getAllProducts()),
-                    "Name", "Price", "Stock");
+                                                StringValues.COLUMN_NAME,
+                                                StringValues.COLUMN_PRICE,
+                                                StringValues.COLUMN_STOCK);
         }
     }
 
@@ -63,14 +69,14 @@ public class UserController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if (Utils.productSelected == -1) {
-                JOptionPane.showMessageDialog(view.getJPanel(), "Please select a product!");
+            if (Utils.productSelected == StringValues.NO_PRODUCT_SELECTED) {
+                JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_SELECT_PRODUCT);
             } else {
                 /* but, if it is different from -1, it means that a product has been selected,
                 so we add the product from that row in shopping cart( HashMap)*/
 
                 users.addProductToShoppingCart(Products.getProductAt(Utils.productSelected), Utils.loggedUser);
-                JOptionPane.showMessageDialog(view.getJPanel(), "The product has been added!");
+                JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_SUCCESSFUL_PRODUCT_ADD);
             }
         }
     }
@@ -96,7 +102,7 @@ public class UserController {
             if (Utils.loggedUser.isShoppingCartEmpty()) {
 
                 /*if so, alert the user and do nothing*/
-                JOptionPane.showMessageDialog(view.getJPanel(), "The shopping cart is empty!");
+                JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_SHOPPING_CART_EMPTY);
 
             } else if (Utils.loggedUser.getMoney() >= Utils.loggedUser.calculateSumToPay()) {
 
@@ -104,7 +110,7 @@ public class UserController {
                 we remove the products one by one in DB, alert the user that everything is ok*/
 
                 Products.removeProductsFromDB(Utils.loggedUser.getShoppingCart());
-                JOptionPane.showMessageDialog(view.getJPanel(), "Checkout successful!");
+                JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_SUCCESSFUL_CHECKOUT);
 
                 ArrayList<Transaction> userTransactions = users.saveTransactionOfUser(Utils.loggedUser);
 
@@ -125,7 +131,7 @@ public class UserController {
 
 
             } else {
-                JOptionPane.showMessageDialog(view.getJPanel(), "Insufficient money!");
+                JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_SARAC_DETECTED);
             }
         }
     }
@@ -136,7 +142,7 @@ public class UserController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(view.getJPanel(), "Logout successful!");
+            JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_SUCCESSFUL_LOGOUT);
             productsJTable.setSplitPaneBottomComponent(productsJTable.getButtonsPanel());
         }
     }

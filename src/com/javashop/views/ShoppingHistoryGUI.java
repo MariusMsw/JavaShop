@@ -1,5 +1,6 @@
 package com.javashop.views;
 
+import com.javashop.StringValues;
 import com.javashop.model.User;
 import com.javashop.model.Users;
 
@@ -14,8 +15,8 @@ public class ShoppingHistoryGUI {
     private JSplitPane splitPane;
     private JPanel bottomPanel = new JPanel();
 
-    private JButton showTransactionsButton = new JButton("Show Transactions");
-    private JButton backButton = new JButton("Back");
+    private JButton showTransactionsButton = new JButton(StringValues.BUTTON_SHOW_TRANSACTIONS);
+    private JButton backButton = new JButton(StringValues.BUTTON_BACK);
 
     public ShoppingHistoryGUI() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

@@ -1,5 +1,6 @@
 package com.javashop.controller;
 
+import com.javashop.StringValues;
 import com.javashop.Utils;
 import com.javashop.model.Product;
 import com.javashop.model.Products;
@@ -43,9 +44,11 @@ public class ShoppingCartController {
              * we set the products to display them by converting them to model. So we can show them
              * in a table in top panel*/
             ProductsJTable.setProductsForJTable(view.getTable(), ProductsController.convertProductsToData(Products.getAllProducts()),
-                    "Name", "Price", "Stock");
+                                                StringValues.COLUMN_NAME,
+                                                StringValues.COLUMN_PRICE,
+                                                StringValues.COLUMN_STOCK);
 
-            Utils.productSelected = -1;
+            Utils.productSelected = StringValues.NO_PRODUCT_SELECTED;
 
              /* with this line, we set the bottom panel back to UserGUI when back
              button is pressed from show cart interface*/
@@ -71,12 +74,12 @@ public class ShoppingCartController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if (Utils.productSelected == -1) {
+            if (Utils.productSelected == StringValues.NO_PRODUCT_SELECTED) {
 
                 /* if there is no product selected, there is nothing
                 to remove from shopping cart and so, we notify the user*/
 
-                JOptionPane.showMessageDialog(view.getTable(), "Please select a product!");
+                JOptionPane.showMessageDialog(view.getTable(), StringValues.MESSAGE_SELECT_PRODUCT);
 
             } else {
                 /*else, if there is a product selected, we remove the product from HashMap
@@ -87,7 +90,7 @@ public class ShoppingCartController {
                 view.refreshDataFromTable();
                 view.updateSum();
 
-                JOptionPane.showMessageDialog(view.getTable(), "The product has been removed!");
+                JOptionPane.showMessageDialog(view.getTable(), StringValues.MESSAGE_SUCCESSFUL_PRODUCT_REMOVE);
             }
         }
     }

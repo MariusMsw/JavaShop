@@ -2,6 +2,7 @@ package com.javashop.controller;
 
 import com.javashop.InputValidation;
 import com.javashop.Main;
+import com.javashop.StringValues;
 import com.javashop.Utils;
 import com.javashop.model.Product;
 import com.javashop.model.Products;
@@ -48,19 +49,19 @@ public class AdminController {
             JTextField productQuantity = new JTextField();
 
             final JComponent[] inputs = new JComponent[]{
-                    new JLabel("ID"),
+                    new JLabel(StringValues.LABEL_ID),
                     productID,
-                    new JLabel("Name"),
+                    new JLabel(StringValues.LABEL_NAME),
                     productName,
-                    new JLabel("Price"),
+                    new JLabel(StringValues.LABEL_PRICE),
                     productPrice,
-                    new JLabel("Quantity"),
+                    new JLabel(StringValues.LABEL_QUANTITY),
                     productQuantity
             };
 
             int result = JOptionPane.showConfirmDialog(view.getJPanel(),
                     inputs,
-                    "Add product",
+                    StringValues.TITLE_ADD_PRODUCT,
                     JOptionPane.YES_NO_OPTION);
             /*if Yes button is clicked, it means that the product should be added to the DB*/
             if (result == JOptionPane.YES_OPTION) {
@@ -80,12 +81,12 @@ public class AdminController {
                         view.refreshDataFromTable();
                         view.updateCapitalTextField(products.calculateCapital());
 
-                        JOptionPane.showMessageDialog(view.getJPanel(), "Product added with success!");
+                        JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_SUCCESSFUL_PRODUCT_ADD);
                     } else {
-                        JOptionPane.showMessageDialog(view.getJPanel(), "Can't add this product!");
+                        JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_ERROR_ADD_PRODUCT);
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(view.getJPanel(), "Write normal values!");
+                    JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_ERROR_BAD_VALUE);
                 }
             }
         }
@@ -96,11 +97,11 @@ public class AdminController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if (Utils.productSelected == -1) {
+            if (Utils.productSelected == StringValues.NO_PRODUCT_SELECTED) {
                 /* if there is no product selected, there is nothing
                 to remove from DB and so, we notify the user*/
 
-                JOptionPane.showMessageDialog(view.getJPanel(), "Please select a product!");
+                JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_SELECT_PRODUCT);
 
             } else {
                 /*else, if there is a product selected, we remove the product
@@ -111,9 +112,9 @@ public class AdminController {
                 view.refreshDataFromTable();
                 view.updateCapitalTextField(products.calculateCapital());
 
-                JOptionPane.showMessageDialog(view.getJPanel(), "The product has been removed!");
+                JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_SUCCESSFUL_PRODUCT_REMOVE);
 
-                Utils.productSelected = -1;
+                Utils.productSelected = StringValues.NO_PRODUCT_SELECTED;
             }
         }
     }
@@ -122,12 +123,12 @@ public class AdminController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (Utils.productSelected == -1) {
+            if (Utils.productSelected == StringValues.NO_PRODUCT_SELECTED) {
 
                 /* if there is no product selected, there is nothing
                 to modify in DB and so, we notify the user*/
 
-                JOptionPane.showMessageDialog(view.getJPanel(), "Please select a product!");
+                JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_SELECT_PRODUCT);
 
             } else {
 
@@ -141,17 +142,17 @@ public class AdminController {
                 JTextField productQuantity = new JTextField();
 
                 final JComponent[] inputs = new JComponent[]{
-                        new JLabel("Name"),
+                        new JLabel(StringValues.COLUMN_NAME),
                         productName,
-                        new JLabel("Price"),
+                        new JLabel(StringValues.COLUMN_PRICE),
                         productPrice,
-                        new JLabel("Quantity"),
+                        new JLabel(StringValues.COLUMN_QUANTITY),
                         productQuantity
                 };
 
                 int result = JOptionPane.showConfirmDialog(view.getJPanel(),
-                        inputs,
-                        "Modify product",
+                                                            inputs,
+                        StringValues.TITLE_MODIFY_PRODUCT,
                         JOptionPane.YES_NO_OPTION);
 
                 /*if Yes button is clicked, it means that the product should be modified in the DB*/
@@ -171,14 +172,14 @@ public class AdminController {
                             view.refreshDataFromTable();
                             view.updateCapitalTextField(products.calculateCapital());
 
-                            JOptionPane.showMessageDialog(view.getJPanel(), "Product modified with success!");
+                            JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_SUCCESSFUL_PRODUCT_MODIFY);
 
-                            Utils.productSelected = -1;
+                            Utils.productSelected = StringValues.NO_PRODUCT_SELECTED;
                         } else {
-                            JOptionPane.showMessageDialog(view.getJPanel(), "Can't modify this product!");
+                            JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_ERROR_PRODUCT_MODIFY);
                         }
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(view.getJPanel(), "Write normal values!");
+                        JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_ERROR_BAD_VALUE);
                     }
                 }
             }
@@ -189,7 +190,7 @@ public class AdminController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(view.getJPanel(), "Logout successful!");
+            JOptionPane.showMessageDialog(view.getJPanel(), StringValues.MESSAGE_SUCCESSFUL_LOGOUT);
             productsJTable.setSplitPaneBottomComponent(productsJTable.getButtonsPanel());
         }
     }

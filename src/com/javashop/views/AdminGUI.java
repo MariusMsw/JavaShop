@@ -15,17 +15,17 @@ import java.util.Map;
 public class AdminGUI {
 
     private JPanel adminPanel;
-    private JButton addProductInDataBaseButton = new JButton("Add product");
-    private JButton removeProductFromDataBaseButton = new JButton("Remove product");
-    private JButton modifyProductButton = new JButton("Modify product");
-    private JButton logoutButton = new JButton("Logout");
-    private JButton showHistoryButton = new JButton("Transactions");
+    private JButton addProductInDataBaseButton = new JButton(StringValues.BUTTON_ADD_PRODUCT);
+    private JButton removeProductFromDataBaseButton = new JButton(StringValues.BUTTON_REMOVE_PRODUCT);
+    private JButton modifyProductButton = new JButton(StringValues.BUTTON_MODIFY_PRODUCT);
+    private JButton logoutButton = new JButton(StringValues.BUTTON_LOGOUT);
+    private JButton showHistoryButton = new JButton(StringValues.BUTTON_SHOW_HISTORY);
     private JTextField capitalTextField = new JTextField(StringValues.PRODUCTS_VALUE);
 
     public AdminGUI() {
 
         adminPanel = new JPanel();
-        adminPanel.setLayout(new GridLayout(1, 6));
+        adminPanel.setLayout(new GridLayout(StringValues.ADMIN_GUI_ROWS, StringValues.ADMIN_GUI_COLUMNS));
         adminPanel.add(addProductInDataBaseButton);
         adminPanel.add(removeProductFromDataBaseButton);
         adminPanel.add(modifyProductButton);
@@ -37,7 +37,7 @@ public class AdminGUI {
         capitalTextField.setHorizontalAlignment(SwingConstants.CENTER);
         capitalTextField.setFont(capitalTextField.getFont().deriveFont(Font.BOLD));
 
-        Utils.productSelected = -1;
+        Utils.productSelected = StringValues.NO_PRODUCT_SELECTED;
     }
 
     public JPanel getJPanel() {
@@ -68,7 +68,11 @@ public class AdminGUI {
     public void refreshDataFromTable() {
         ArrayList<Product> theProducts = Products.getAllProducts();
         String[][] data = ProductsController.convertProductsToData(theProducts);
-        ProductsJTable.setProductsForJTable(ProductsJTable.getTable(), data, "Name", "Price", "Stock");
+        ProductsJTable.setProductsForJTable(ProductsJTable.getTable(),
+                                            data,
+                                            StringValues.COLUMN_NAME,
+                                            StringValues.COLUMN_PRICE,
+                                            StringValues.COLUMN_PRICE);
     }
 
     public void updateCapitalTextField(Integer value) {

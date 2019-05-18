@@ -1,5 +1,6 @@
 package com.javashop.controller;
 
+import com.javashop.StringValues;
 import com.javashop.Utils;
 import com.javashop.model.Transaction;
 import com.javashop.model.Users;
@@ -49,14 +50,14 @@ public class ShoppingHistoryController {
                 showUserTransactionFrame(view.getUsersList().getSelectedValue().toString());
 
             } else {
-                JOptionPane.showMessageDialog(view.getSplitPane(), "Choose a user!");
+                JOptionPane.showMessageDialog(view.getSplitPane(), StringValues.MESSAGE_SELECT_USER);
             }
         }
     }
 
     private void showUserTransactionFrame(String username) {
 
-        JFrame frame = new JFrame(username + "'s transactions");
+        JFrame frame = new JFrame(username + StringValues.TEXT_USER_TRANSACTION);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize((int) screenSize.getWidth() / 2,
@@ -73,7 +74,7 @@ public class ShoppingHistoryController {
         }
 
         JTextArea textArea = new JTextArea(transaction.toString());
-        JButton cancelButton = new JButton("Cancel");
+        JButton cancelButton = new JButton(StringValues.BUTTON_CANCEL);
 
         cancelButton.addActionListener(new ActionListener() {
             @Override

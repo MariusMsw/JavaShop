@@ -1,5 +1,6 @@
 package com.javashop.views;
 
+import com.javashop.StringValues;
 import com.javashop.Utils;
 import com.javashop.controller.ProductsController;
 import com.javashop.model.Product;
@@ -17,25 +18,32 @@ public class ShoppingCartGUI {
     /* the two buttons from she shopping cart interface: back and remove product*/
     private JTable table = new JTable();
 
-    private JButton backButton = new JButton("Back");
-    private JButton removeButton = new JButton("Remove Product");
+    private JButton backButton = new JButton(StringValues.BUTTON_BACK);
+    private JButton removeButton = new JButton(StringValues.BUTTON_REMOVE_PRODUCT);
     private JTextField totalSum = new JTextField();
 
     public ShoppingCartGUI(User user) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
         Map<Product, Integer> userProducts = user.getShoppingCart();
-        table.setBounds(30, 40, 200, 300);
+        table.setBounds(StringValues.TABLE_BOUNDS_X,
+                        StringValues.TABLE_BOUNDS_Y,
+                        StringValues.TABLE_BOUNDS_WIDTH,
+                        StringValues.TABLE_BOUNDS_HEIGHT);
 
         /* convert the shopping cart products (the HashMap) to matrix with each product fields:
          *name of product, price and quantity to show that product in table properly*/
         String[][] data = ProductsController.convertProductsToData(userProducts);
 
         /* change the Stock column to Quantity because we are in shopping cart GUI*/
-        ProductsJTable.setProductsForJTable(table, data, "Name", "Price", "Quantity");
+        ProductsJTable.setProductsForJTable(table, data,
+                                            StringValues.COLUMN_NAME,
+                                            StringValues.COLUMN_PRICE,
+                                            StringValues.COLUMN_QUANTITY);
+
         JScrollPane userProductsPanel = new JScrollPane(table);
 
-        totalSum.setText("Total sum: " + Utils.loggedUser.calculateSumToPay());
+        totalSum.setText(StringValues.TEXT_TOTAL + Utils.loggedUser.calculateSumToPay());
         totalSum.setEditable(false);
         totalSum.setHorizontalAlignment(SwingConstants.CENTER);
         totalSum.setFont(totalSum.getFont().deriveFont(Font.BOLD));
@@ -77,10 +85,14 @@ public class ShoppingCartGUI {
          * the products in shopping cart in table*/
         Map<Product, Integer> userProducts = Utils.loggedUser.getShoppingCart();
         String[][] data = ProductsController.convertProductsToData(userProducts);
-        ProductsJTable.setProductsForJTable(table, data, "Name", "Price", "Quantity");
+        ProductsJTable.setProductsForJTable(table,
+                                            data,
+                                            StringValues.COLUMN_NAME,
+                                            StringValues.COLUMN_PRICE,
+                                            StringValues.COLUMN_QUANTITY);
     }
 
     public void updateSum(){
-        totalSum.setText("Total sum: " + Utils.loggedUser.calculateSumToPay());
+        totalSum.setText(StringValues.TEXT_TOTAL + Utils.loggedUser.calculateSumToPay());
     }
 }
