@@ -24,6 +24,13 @@ public class StringValues {
     public static String COLUMN_STOCK = "Stock";
     public static String COLUMN_QUANTITY = "Quantity";
 
+    public static String COLUMN_ID = "id";
+    public static String COLUMN_DATE = "Date";
+    public static String COLUMN_USERID = "User id";
+    public static String COLUMN_PRODUCT_NAME = "Product name";
+
+
+
     public static String TITLE_LOGIN = "Login";
     public static String TITLE_REGISTER = "Register";
     public static String TITLE_SHOP = "Shop";

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cd14751-179e-49ed-9542-3d77c6bb9f9c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/javashop/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/javashop/model/Products.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/model/Products.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/javashop/StringValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/StringValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/javashop/controller/ShoppingHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javashop/controller/ShoppingHistoryController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,8 +46,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/javashop/controller/ProductsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1267">
-              <caret line="233" lean-forward="true" selection-start-line="233" selection-end-line="233" />
+            <state relative-caret-position="-272">
+              <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/javashop/views/ProductsJTable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="55" column="8" lean-forward="true" selection-start-line="55" selection-start-column="8" selection-end-line="62" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -93,8 +102,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/javashop/controller/ShoppingHistoryController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="52" column="99" selection-start-line="52" selection-start-column="99" selection-end-line="52" selection-end-column="99" />
+            <state relative-caret-position="512">
+              <caret line="130" column="28" selection-start-line="130" selection-start-column="28" selection-end-line="130" selection-end-column="28" />
+              <folding>
+                <element signature="e#4453#4454#0" expanded="true" />
+                <element signature="e#4500#4501#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,8 +115,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/javashop/StringValues.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+            <state relative-caret-position="442">
+              <caret line="26" column="42" lean-forward="true" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -171,13 +184,13 @@
         <option value="$PROJECT_DIR$/src/com/javashop/views/ShoppingCartGUI.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/views/ShoppingHistoryGUI.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/src/com/javashop/controller/ShoppingHistoryController.java" />
-        <option value="$PROJECT_DIR$/src/com/javashop/StringValues.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/model/User.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/controller/ProductsController.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/model/Users.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/controller/AdminController.java" />
         <option value="$PROJECT_DIR$/src/com/javashop/model/Products.java" />
+        <option value="$PROJECT_DIR$/src/com/javashop/StringValues.java" />
+        <option value="$PROJECT_DIR$/src/com/javashop/controller/ShoppingHistoryController.java" />
       </list>
     </option>
   </component>
@@ -323,12 +336,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1554637776889</updated>
-      <workItem from="1559974876402" duration="11018000" />
+      <workItem from="1559974876402" duration="12140000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11018000" />
+    <option name="totallyTimeSpent" value="12140000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-99" width="1936" height="1056" extended-state="0" />
@@ -458,13 +471,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/javashop/views/ProductsJTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-408">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/javashop/views/UserGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -531,20 +537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/javashop/controller/ProductsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1267">
-          <caret line="233" lean-forward="true" selection-start-line="233" selection-end-line="233" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/javashop/StringValues.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/javashop/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="403">
@@ -582,10 +574,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/javashop/StringValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="42" lean-forward="true" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/javashop/controller/ProductsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-272">
+          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/javashop/views/ProductsJTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="55" column="8" lean-forward="true" selection-start-line="55" selection-start-column="8" selection-end-line="62" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/javashop/controller/ShoppingHistoryController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="52" column="99" selection-start-line="52" selection-start-column="99" selection-end-line="52" selection-end-column="99" />
+        <state relative-caret-position="512">
+          <caret line="130" column="28" selection-start-line="130" selection-start-column="28" selection-end-line="130" selection-end-column="28" />
+          <folding>
+            <element signature="e#4453#4454#0" expanded="true" />
+            <element signature="e#4500#4501#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
