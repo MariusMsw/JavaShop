@@ -158,12 +158,35 @@ public class AdminController {
                 /*if Yes button is clicked, it means that the product should be modified in the DB*/
                 if (result == JOptionPane.YES_OPTION) {
                     /*and so, we get the fields inserted and cast them to the specific type*/
-                    try {
-                        String name = productName.getText();
-                        double price = Double.parseDouble(productPrice.getText());
-                        int quantity = Integer.parseInt(productQuantity.getText());
 
-                        if (!name.equals("") && price >= 0 && quantity >= 0) {
+
+                    String name = null;
+                    double price;
+                    int quantity;
+
+                    try {
+
+                        if(productName.getText().isEmpty()) {
+                            name = "";
+                        }else{
+                            name = productName.getText().trim();
+                        }
+
+                        if(productPrice.getText().isEmpty()){
+                            price = 0d;
+                        }else{
+                            price = Double.parseDouble(productPrice.getText().trim());
+                        }
+
+                        if(productQuantity.getText().isEmpty()){
+                            quantity = 0;
+                        }else {
+                            quantity = Integer.parseInt(productQuantity.getText().trim());
+                        }
+
+                        System.out.println(" name=" + name + "price " + price + " quantity=" + quantity);
+
+                        if (name.matches("^[a-zA-Z0-9]*$") && price >= 0 && quantity >= 0) {
 
                             /* create a new product with those fields, modify it in the DB and refresh the table to show the product instantly in table*/
                             Product product = new Product(selectedID, name, price, quantity);

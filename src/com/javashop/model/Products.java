@@ -122,35 +122,144 @@ public class Products {
     }
 
     public static void modifyProductInDB(Product product) {
+
+        String EMPTY_STRING = "";
+
         try {
-            String query = "update products set name = ?, price = ?, quantity = ? where id = ?";
 
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, product.getName());
-            preparedStatement.setDouble(2, product.getPrice());
-            preparedStatement.setInt(3, product.getQuantity());
-            preparedStatement.setInt(4, product.getId());
+            String queryUpdateName = "update products set name = ? where id = ?";
+            String queryUpdatePrice = "update products set price = ? where id = ?";
+            String queryUpdateQuantity = "update products set quantity = ? where id = ?";
+            String queryUpdateNamePrice = "update products set name = ?, price = ? where id = ?";
+            String queryUpdateNameQuantity = "update products set name = ?,quantity = ? where id = ?";
+            String queryUpdatePriceQuantity = "update products set price = ?, quantity = ? where id = ?";
+            String queryUpdateProduct = "update products set name = ?, price = ?, quantity = ? where id = ?";
 
-            preparedStatement.executeUpdate();
+            // Modify the name
+            if (!product.getName().equals(EMPTY_STRING) && product.getPrice() == 0d && product.getQuantity() == 0) {
+                PreparedStatement preparedStatement = connection.prepareStatement(queryUpdateName);
+                preparedStatement.setString(1, product.getName());
+                preparedStatement.setInt(2, product.getId());
 
-            Product updatedProduct = findProduct(product.getId());
+                preparedStatement.executeUpdate();
 
-            if (updatedProduct != null) {
-                updatedProduct.setName(product.getName());
-                updatedProduct.setPrice(product.getPrice());
-                updatedProduct.setQuantity(product.getQuantity());
+                Product updatedProduct = findProduct(product.getId());
+
+                if (updatedProduct != null) {
+                    updatedProduct.setName(product.getName());
+                }
             }
+
+            // Modify the price
+            if (product.getName().equals(EMPTY_STRING) && product.getPrice() != 0d && product.getQuantity() == 0) {
+                PreparedStatement preparedStatement = connection.prepareStatement(queryUpdatePrice);
+                preparedStatement.setDouble(1, product.getPrice());
+                preparedStatement.setInt(2, product.getId());
+
+                preparedStatement.executeUpdate();
+
+                Product updatedProduct = findProduct(product.getId());
+
+                if (updatedProduct != null) {
+                    updatedProduct.setPrice(product.getPrice());
+                }
+            }
+
+            // Modify the quantity
+            if (product.getName().equals(EMPTY_STRING) && product.getPrice() == 0d && product.getQuantity() != 0) {
+                PreparedStatement preparedStatement = connection.prepareStatement(queryUpdateQuantity);
+                preparedStatement.setInt(1, product.getQuantity());
+                preparedStatement.setInt(2, product.getId());
+
+                preparedStatement.executeUpdate();
+
+                Product updatedProduct = findProduct(product.getId());
+
+                if (updatedProduct != null) {
+                    updatedProduct.setQuantity(product.getQuantity());
+                }
+            }
+
+            // Modify the name and the price
+            if (!product.getName().equals(EMPTY_STRING) && product.getPrice() != 0d && product.getQuantity() == 0) {
+                PreparedStatement preparedStatement = connection.prepareStatement(queryUpdateNamePrice);
+                preparedStatement.setString(1, product.getName());
+                preparedStatement.setDouble(2, product.getPrice());
+                preparedStatement.setInt(3, product.getId());
+
+                preparedStatement.executeUpdate();
+
+                Product updatedProduct = findProduct(product.getId());
+
+                if (updatedProduct != null) {
+                    updatedProduct.setName(product.getName());
+                    updatedProduct.setPrice(product.getPrice());
+                }
+            }
+
+            // Modify the name and the quantity
+            if (!product.getName().equals(EMPTY_STRING) && product.getPrice() == 0d && product.getQuantity() != 0) {
+                PreparedStatement preparedStatement = connection.prepareStatement(queryUpdateNameQuantity);
+                preparedStatement.setString(1, product.getName());
+                preparedStatement.setInt(2, product.getQuantity());
+                preparedStatement.setInt(3, product.getId());
+
+                preparedStatement.executeUpdate();
+
+                Product updatedProduct = findProduct(product.getId());
+
+                if (updatedProduct != null) {
+                    updatedProduct.setName(product.getName());
+                    updatedProduct.setQuantity(product.getQuantity());
+                }
+            }
+
+            // Modify the price and the quantity
+            if (product.getName().equals(EMPTY_STRING) && product.getPrice() != 0d && product.getQuantity() != 0) {
+                PreparedStatement preparedStatement = connection.prepareStatement(queryUpdatePriceQuantity);
+                preparedStatement.setDouble(1, product.getPrice());
+                preparedStatement.setInt(2, product.getQuantity());
+                preparedStatement.setInt(3, product.getId());
+
+                preparedStatement.executeUpdate();
+
+                Product updatedProduct = findProduct(product.getId());
+
+                if (updatedProduct != null) {
+                    updatedProduct.setPrice(product.getPrice());
+                    updatedProduct.setQuantity(product.getQuantity());
+                }
+            }
+
+            // Modify the product
+            if (!product.getName().equals(EMPTY_STRING) && product.getPrice() != 0d && product.getQuantity() != 0) {
+                PreparedStatement preparedStatement = connection.prepareStatement(queryUpdateProduct);
+                preparedStatement.setString(1, product.getName());
+                preparedStatement.setDouble(2, product.getPrice());
+                preparedStatement.setInt(3, product.getQuantity());
+                preparedStatement.setInt(4, product.getId());
+
+                preparedStatement.executeUpdate();
+
+                Product updatedProduct = findProduct(product.getId());
+
+                if (updatedProduct != null) {
+                    updatedProduct.setName(product.getName());
+                }
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public Integer calculateCapital(){
+
+    public Integer calculateCapital() {
 
         int capital = 0;
 
-        for(Product product : products){
+        for (Product product : products) {
             capital += product.getPrice() * product.getQuantity();
         }
 
