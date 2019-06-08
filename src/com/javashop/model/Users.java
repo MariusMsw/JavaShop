@@ -1,5 +1,6 @@
 package com.javashop.model;
 
+import com.javashop.StringValues;
 import com.javashop.Utils;
 
 import java.sql.*;
@@ -47,11 +48,9 @@ public class Users {
         }
     }
 
-    public static void addUser(String username, String password, Integer money) {
+    public void addUser(String username, String password, Integer money) {
         /*when register button is used and we create a new account, save it in DB by using prepared statements
          * also, save that user in users ArrayList*/
-        User user = new User(username, password, money);
-        users.add(user);
 
         PreparedStatement statement;
 
@@ -64,6 +63,12 @@ public class Users {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        int id = this.getUserIdFromDB(username,password);
+
+        User user = new User(username, password, money);
+        user.setId(id);
+        users.add(user);
     }
 
     public void updateUserMoneyInDB(User updatedUser) {
@@ -220,6 +225,28 @@ public class Users {
         }
 
         return null;
+    }
+
+    public int getUserIdFromDB(String username, String password){
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement("select id from users where username = ? and password = ? ")) {
+
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+
+            preparedStatement.execute();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while (resultSet.next()) {
+                return resultSet.getInt("id");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return StringValues.ERROR_DATABASE;
     }
 
 }

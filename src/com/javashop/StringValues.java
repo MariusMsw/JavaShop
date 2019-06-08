@@ -43,6 +43,7 @@ public class StringValues {
 
     public static int NO_PRODUCT_SELECTED = -1;
 
+    public static int ERROR_DATABASE = -1;
 
     public static String BUTTON_LOGIN = "LOGIN";
     public static String BUTTON_REGISTER = "REGISTER";

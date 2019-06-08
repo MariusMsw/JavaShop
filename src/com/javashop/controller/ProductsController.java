@@ -180,8 +180,14 @@ public class ProductsController {
 
                         /* If there if no matching user already, create the new account and notify the user
                          * that the account has been created*/
-                        JOptionPane.showMessageDialog(view.getMainFrame(), StringValues.MESSAGE_SUCCESSFUL_REGISTER);
-                        Users.addUser(usernameAsString, passwordAsString, moneyAsInt);
+
+                        users.addUser(usernameAsString, passwordAsString, moneyAsInt);
+                        int userId = users.getUserIdFromDB(usernameAsString,passwordAsString);
+                        if( userId != StringValues.ERROR_DATABASE){
+                            JOptionPane.showMessageDialog(view.getMainFrame(), StringValues.MESSAGE_SUCCESSFUL_REGISTER);
+                        }else {
+                            JOptionPane.showMessageDialog(view.getMainFrame(), StringValues.MESSAGE_ERROR_REGISTER);
+                        }
 
                     } else {
                         JOptionPane.showMessageDialog(view.getMainFrame(), StringValues.MESSAGE_ERROR_REGISTER);

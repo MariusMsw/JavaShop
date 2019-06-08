@@ -24,6 +24,10 @@ public class User {
         this.money = money;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
